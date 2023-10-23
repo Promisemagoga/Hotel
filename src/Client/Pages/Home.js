@@ -1,6 +1,7 @@
 import Navbar from "../Components/Navbar";
 import { FaCar, FaGlassMartini, FaHiking, FaSpa, FaUser } from "react-icons/fa";
 import Rooms from "../Components/Rooms";
+import Footer from "../Components/Footer";
 
 
 
@@ -15,7 +16,7 @@ function Home() {
           <h1>Home away from home</h1>
           <hr
             style={{
-              width: "250px",
+              width: "50%",
               height: "10px",
               marginLeft: "auto",
               marginRight: "auto",
@@ -94,6 +95,7 @@ function Home() {
         <h1>Featured Rooms</h1>
      <Rooms/>
       </div>
+      <Footer/>
     </div>
   );
 }

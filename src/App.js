@@ -11,6 +11,7 @@ import { useEffect, useState } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth, db } from './Config/Firebase';
 import { collection, getDocs, query, where } from 'firebase/firestore';
+import About from './Client/Pages/About';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(
@@ -62,6 +63,8 @@ function App() {
       <Router>
         <Routes>
         { <Route path="/" element={<Home  />} />}
+        { <Route path="/About" element={<About  />} />}
+
         </Routes>
       </Router>
     </div>
