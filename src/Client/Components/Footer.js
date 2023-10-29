@@ -1,152 +1,112 @@
-import { collection, getDocs } from 'firebase/firestore';
-import React, { useEffect, useState } from 'react'
-import { db } from '../../Config/Firebase';
-import { Link } from 'react-router-dom';
-import Map from './Map';
-function Footer() {
-    const [info, setInfo] = useState([]);
-    const getInfo = async () => {
-        try {
-            const querrySnapShot = await getDocs(collection(db, "info"));
-            const data = querrySnapShot.docs.map((doc) => ({
-                id: doc.id,
-                ...doc.data(),
-            }));
-            setInfo(data);
-        } catch (error) { }
-    };
-    useEffect(() => {
-        getInfo();
-    }, []);
+import { collection, getDocs } from "firebase/firestore";
+import React, { useEffect, useState } from "react";
+import { db } from "../../Config/Firebase";
+import { Link } from "react-router-dom";
+import Map from "./Map";
+import { Box } from "@mui/system";
+import { Typography } from "@mui/material";
+import { Facebook, LinkedIn, Twitter } from "@mui/icons-material";
 
-    const [showMap, setShowMap] = useState(false);
-    function show() {
-        setShowMap(!showMap);
-    }
-    return (
-        <div>
-            {showMap && <Map />}
-            {info.map((data, index) => (
-                <div className="footer" key={index}>
-                    <footer>
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-xl-3 col-lg-4 col-md-6">
-                                    <div>
-                                        <h1>Pro_Stay</h1>
-                                        <p class="mb-30 footer-desc">
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                            Ad soluta facilis eos quia optio iusto odit atque eum
-                                            tempore, quisquam officiis vero veniam hic,
-                                        </p>
-                                        <div className="icons">
-                                            <i
-                                                className="fa fa-facebook-official"
-                                                aria-hidden="true"
-                                            ></i>
-                                            <i
-                                                className="fa fa-twitter-square"
-                                                aria-hidden="true"
-                                            ></i>
-                                            <i className="fa fa-instagram" aria-hidden="true"></i>
-                                        </div>
-                                        <br />
-                                    </div>
-                                </div>
-                                <div class="col-xl-2 offset-xl-1 col-lg-2 col-md-6">
-                                    <div class="">
-                                        <h4>Quick Link</h4>
-                                        <ul class="list-unstyled">
-                                            <li>
-                                                <a href="#" class="text-decoration-none">
-                                                    <Link to="/ClientDashboard">
-                                                        Home
-                                                    </Link>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="text-decoration-none">
-                                                    <Link to="/ClientHotelPolicies">
-                                                        About Us
-                                                    </Link>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="text-decoration-none">
-                                                    {" "}
-                                                    <Link to="/ClientHotelPolicies" className="policies">
-                                                        Hotel policies
-                                                    </Link>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="text-decoration-none">
-                                                    {" "}
-                                                    <Link className="policies" onClick={show}>
-                                                        Show Map
-                                                    </Link>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-xl-3 col-lg-3 col-md-6">
-                                    <div>
-                                        <h4>Rooms Available</h4>
-                                        <ul class="list-unstyled">
-                                            <li>
-                                                <a href="#" class="text-decoration-none">
-                                                    Deluxe
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="text-decoration-none">
-                                                    Suite
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="text-decoration-none">
-                                                    Self-Catering
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-xl-3 col-lg-3 col-md-6">
-                                    <div>
-                                        <h4>Address</h4>
-                                        <ul class="list-unstyled">
-                                            <li>
-                                                <p>{data.telephone}</p>
-                                            </li>
-                                            <li>
-                                                <p>
-                                                    <a href="#">{data.email}</a>
-                                                </p>
-                                            </li>
-                                            <li>
-                                                <p>{data.adress}</p>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-center">
-                                <div class="copyright">
-                                    <p>
-                                        Developed and maintained by{" "}
-                                        <a href="https://react-portfolio-one-eta.vercel.app/" target="_blank">
-                                            @PromiseMagoa
-                                        </a>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </footer>
-                </div>
-            ))}
+function Footer() {
+  const [info, setInfo] = useState([]);
+  const getInfo = async () => {
+    try {
+      const querrySnapShot = await getDocs(collection(db, "info"));
+      const data = querrySnapShot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setInfo(data);
+    } catch (error) {}
+  };
+  useEffect(() => {
+    getInfo();
+  }, []);
+
+  const [showMap, setShowMap] = useState(false);
+  function show() {
+    setShowMap(!showMap);
+  }
+  return (
+    <div>
+      {showMap && <Map />}
+      {info.map((data, index) => (
+        <div className="footer">
+          <div className="footerContainer" key={index}>
+            <div>
+              <h2>Pro_Stay</h2>
+              <p style={{ width: "200px" }}>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad
+                soluta facilis eos quia optio iusto odit atque eum tempore,
+                quisquam officiis vero veniam hic.
+              </p>
+            </div>
+            <div>
+              <h2>Services</h2>
+              <ul>
+                <li>Spa</li>
+                <li>Free Shuttle</li>
+                <li>Safe Hiking</li>
+                <li>Free Welcome Cocktails</li>
+              </ul>
+            </div>
+            <div>
+              <h2>Navigation</h2>
+              <ul>
+                <li>
+                  {" "}
+                  <Link>Home</Link>
+                </li>
+                <li>
+                  {" "}
+                  <Link>About Us</Link>
+                </li>
+                <li>
+                  {" "}
+                  <Link>Our Rooms</Link>
+                </li>
+                <li onClick={show}>
+                  {" "}
+                  <Link>Show Map</Link>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h2>Contact Us</h2>
+              <ul>
+                <li>{data.adress}</li>
+                <li>{data.email}</li>
+                <li>{data.telephone}</li>
+              </ul>
+            </div>
+          </div>
+          <hr
+            style={{
+              width: "100%",
+              backgroundColor: "#fff",
+            }}
+          />
+          <div className="belowFooter">
+            <div className="socialMediaIcons">
+              <Twitter sx={{ fontSize: 35 }} />
+              <LinkedIn sx={{ fontSize: 35 }} />
+              <Facebook sx={{ fontSize: 35 }} />
+            </div>
+            <p>
+              {" "}
+              © 2023 Copyright: <Link>PromiseMagoga</Link>
+            </p>
+            <div className="socialMediaIcons">
+              <p>
+                <Link>Policies</Link>
+              </p>
+              <p>Ts n Cs</p>
+            </div>
+          </div>
         </div>
-    )
+      ))}
+    </div>
+  );
 }
 
-export default Footer
+export default Footer;

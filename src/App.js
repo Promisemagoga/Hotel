@@ -59,7 +59,6 @@ function App() {
   }, [isAuthenticated])
 
   return (
-    <div className="App">
       <Router>
         <Routes>
         { <Route path="/" element={<Home  />} />}
@@ -67,7 +66,6 @@ function App() {
 
         </Routes>
       </Router>
-    </div>
   );
 }
 
