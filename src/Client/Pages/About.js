@@ -87,77 +87,25 @@ function About() {
             }}
           />
           <div className="serviceCard">
-            <div className="card">
-              <FaGlassMartini
-                style={{
-                  fontSize: "30px",
-                  color: "#61dafb",
-                  marginBottom: "30px",
-                }}
-              />
-              <h5>Welcome cocktail</h5>
-              <p>
-                With supporting text below as a natural lead-in to additional
-                content.
-              </p>
-            </div>
-            <div className="card">
-              <FaSpa
-                style={{
-                  fontSize: "30px",
-                  color: "#61dafb",
-                  marginBottom: "30px",
-                }}
-              />
-              <h5>Spa</h5>
-              <p>
-                With supporting text below as a natural lead-in to additional
-                content.
-              </p>
-            </div>
-            <div className="card">
-              <FaCar
-                style={{
-                  fontSize: "30px",
-                  color: "#61dafb",
-                  marginBottom: "30px",
-                }}
-              />
-              <h5>Free Shuttle</h5>
-              <p>
-                With supporting text below as a natural lead-in to additional
-                content.
-              </p>
-            </div>
-            <div className="card">
-              <FaHiking
-                style={{
-                  fontSize: "30px",
-                  color: "#61dafb",
-                  marginBottom: "30px",
-                }}
-              />
-
-              <h5>Safe Hiking</h5>
-              <p>
-                With supporting text below as a natural lead-in to additional
-                content.
-              </p>
-            </div>
+           <p style={{color:"#111a21"}}>
+           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+            eu augue ut lectus arcu bibendum at varius vel. Et tortor at risus viverra adipiscing at in. 
+            Rhoncus mattis rhoncus urna neque viverra justo nec ultrices. Orci nulla pellentesque dignissim enim sit amet venenatis urna. Consequat semper viverra nam libero justo laoreet. 
+            Curabitur gravida arcu ac tortor dignissim convallis aenean et. Blandit libero volutpat sed cras ornare arcu dui 
+            vivamus. Ridiculus mus mauris vitae ultricies leo integer. Tortor at auctor urna nunc id cursus.
+<br/>
+<br/>
+Vitae auctor eu augue ut. Magna ac placerat vestibulum lectus mauris ultrices. 
+Eros donec ac odio tempor orci dapibus ultrices in iaculis. Ultricies tristique nulla aliquet enim tortor at auctor 
+urna nunc. Blandit turpis cursus in hac habitasse. Risus pretium quam vulputate dignissim suspendisse in est ante. 
+Nulla facilisi etiam dignissim diam quis enim. Sed adipiscing diam donec adipiscing tristique risus nec feugiat. 
+Sem integer vitae justo eget magna. Fermentum iaculis eu non diam phasellus vestibulum lorem sed risus. Justo donec enim 
+diam vulputate. Sed vulputate odio ut enim blandit volutpat maecenas volutpat blandit. Elementum nibh tellus molestie nunc
+ non. Aliquet nibh praesent tristique magna sit amet purus gravida quis. Ut tortor pretium viverra suspendisse. 
+ Vel orci porta non pulvinar. Faucibus purus in massa tempor nec feugiat nisl pretium. Dictumst vestibulum rhoncus est 
+ pellentesque.
+           </p>
           </div>
-        </div>
-        <div className="rooms">
-          <h1>Featured Rooms</h1>
-          <hr
-            style={{
-              width: "250px",
-              height: "10px",
-              marginLeft: "auto",
-              marginRight: "auto",
-              backgroundColor: "#56B2BB",
-            }}
-          />
-          <Rooms />
         </div>
       </div>
       <Footer />
