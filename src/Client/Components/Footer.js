@@ -55,15 +55,11 @@ function Footer() {
               <ul>
                 <li>
                   {" "}
-                  <Link>Home</Link>
+                  <Link to="/">Home</Link>
                 </li>
                 <li>
                   {" "}
-                  <Link>About Us</Link>
-                </li>
-                <li>
-                  {" "}
-                  <Link>Our Rooms</Link>
+                  <Link to="/About">About Us</Link>
                 </li>
                 <li onClick={show}>
                   {" "}

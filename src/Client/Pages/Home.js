@@ -21,7 +21,7 @@ function Home() {
               }}
             />
             <p>Luxurious Rooms Starting from R850 pm</p>
-            <button>Our Rooms</button>
+            <button>Contact Us</button>
           </div>
         </div>
         <div className="services">
