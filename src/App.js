@@ -13,6 +13,7 @@ import { auth, db } from './Config/Firebase';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import About from './Client/Pages/About';
 import Contact from './Client/Pages/Contact';
+import ClientDashboard from './Client/Pages/ClientDashboard';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(
@@ -60,14 +61,14 @@ function App() {
   }, [isAuthenticated])
 
   return (
-      <Router>
-        <Routes>
-        { <Route path="/" element={<Home  />} />}
-        { <Route path="/About" element={<About  />} />}
-        { <Route path="/Contact" element={<Contact  />} />}
-
-        </Routes>
-      </Router>
+    <Router>
+      <Routes>
+        {!userRole && <Route path="/" element={<Home setIsAuthenticated={setIsAuthenticated} />} />}
+        <Route path="/About" element={<About />} />
+        <Route path="/Contact" element={<Contact />} />
+        {userRole === 'client' && <Route path="/ClientRoom" element={<ClientDashboard setRoomId={setRoomId} />} />}
+      </Routes>
+    </Router>
   );
 }
 
