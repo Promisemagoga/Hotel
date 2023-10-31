@@ -94,7 +94,7 @@ function Footer() {
             </p>
             <div className="socialMediaIcons">
               <p>
-                <Link>Policies</Link>
+                <Link to="/About">Policies</Link>
               </p>
               <p>Ts n Cs</p>
             </div>
