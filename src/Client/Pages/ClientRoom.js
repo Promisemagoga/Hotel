@@ -61,6 +61,8 @@ function ClientRoom(props) {
                         </div>
                         <div style={{ width: "50%", marginTop: "10px" }}>
                             <h1>{docData.type}</h1>
+                            <h2>Description:</h2>
+                            <p style={{ color: "#000" }}>{docData.description}</p>
                             <div className="roomDetails icons">
                                 <h2 style={{ display: "flex", flexDirection: "row", columnGap: "10px", alignItems: "center", justifyContent: "center" }}><Hotel style={{ height: '38px', width: '38px', color: "#61dafb" }} />{docData.beds}</h2>
                                 <h2 style={{ display: "flex", flexDirection: "row", columnGap: "10px", alignItems: "center", justifyContent: "center" }}><Person style={{ height: '38px', width: '38px', color: "#61dafb" }} />{docData.occupants}</h2>
@@ -78,8 +80,6 @@ function ClientRoom(props) {
                                     </ul>
                                 </div>
                             </div>
-                            <h2>Description:</h2>
-                            <p style={{ color: "#000" }}>{docData.description}</p>
                             <button onClick={bookRoom} className="viewDealBtn">Check Availability</button>
                         </div>
                     </div>

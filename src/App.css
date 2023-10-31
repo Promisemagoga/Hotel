@@ -83,6 +83,15 @@
   padding: 20px;
 }
 
+.room h1{
+  font-size: 50px;
+}
+
+.room h2{
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
 /* .room {
   display: flex;
   flex-direction: column;
@@ -491,7 +500,7 @@ li {
 
 .imageGalleryClient img {
   width: 95%;
-  height: 30vh;
+  height: 20vh;
 
 }
 
