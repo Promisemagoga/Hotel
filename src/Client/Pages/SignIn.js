@@ -51,6 +51,7 @@ function SignIn({ setIsAuthenticated, setOpenModal }) {
                   type="text"
                   className="loginInput"
                   onChange={(event) => setEmail(event.target.value)}
+                  required
                 />
               </label>
               <label htmlFor="" className="field">

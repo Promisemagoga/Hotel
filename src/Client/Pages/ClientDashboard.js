@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
-import Navbar from '../Components/Navbar';
 import Footer from '../Components/Footer';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../../Config/Firebase';
+import NavBarDash from '../Components/NavBarDash';
+import { Hotel, PersonOutline } from '@mui/icons-material';
 
 function ClientDashboard({ setRoomId }, props) {
   const navigate = useNavigate()
@@ -36,7 +37,7 @@ function ClientDashboard({ setRoomId }, props) {
 
   return (
     <div className='client--dashboard'>
-      <Navbar/>
+      <NavBarDash/>
       <div className="grid-container">
         {rooms.map((data, index) => (
           <div key={index} className="grid-item">
@@ -49,12 +50,12 @@ function ClientDashboard({ setRoomId }, props) {
               <div className="bed-occupants-button">
                 <div className='roomInfo'>
                   <h3 className="roomCard-headings">
-                    <i className="fa fa-bed" aria-hidden="true"></i>
+                    <Hotel/>
                     {data.beds}
                   </h3>
                   <br />
                   <h3 className="roomCard-headings">
-                    <i className="fa fa-user" aria-hidden="true"></i>
+                    <PersonOutline/>
                     {data.occupants}
                   </h3>
                 </div>

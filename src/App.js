@@ -14,6 +14,8 @@ import { collection, getDocs, query, where } from 'firebase/firestore';
 import About from './Client/Pages/About';
 import Contact from './Client/Pages/Contact';
 import ClientDashboard from './Client/Pages/ClientDashboard';
+import ClientRoom from './Client/Pages/ClientRoom';
+import BookRoom from './Client/Pages/BookRoom';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(
@@ -63,10 +65,12 @@ function App() {
   return (
     <Router>
       <Routes>
+      {userRole === 'client' && <Route path="/" element={<ClientDashboard setRoomId={setRoomId} />} />}
         {!userRole && <Route path="/" element={<Home setIsAuthenticated={setIsAuthenticated} />} />}
         <Route path="/About" element={<About />} />
         <Route path="/Contact" element={<Contact />} />
-        {userRole === 'client' && <Route path="/ClientRoom" element={<ClientDashboard setRoomId={setRoomId} />} />}
+        <Route path="/ClientRoom" element={isAuthenticated ? <ClientRoom roomId={roomId} setIsAuthenticated={setIsAuthenticated} /> : <Navigate to="/" />}></Route>
+        <Route path="/bookRoom" element={isAuthenticated ? <BookRoom roomId={roomId} setIsAuthenticated={setIsAuthenticated} /> : <Navigate to="/" />}></Route>
       </Routes>
     </Router>
   );

@@ -24,7 +24,7 @@ function Navbar() {
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto">
-                <a href="/" class="nav-item nav-link active">Home</a>
+                <a href="/Home" class="nav-item nav-link active">Home</a>
                 <a href="/About" class="nav-item nav-link">About</a>
                 <a href="/Contact" class="nav-item nav-link">Contact</a>
                 <button class="btn btn-outline-success my-2 my-sm-0" onClick={modal}>SignIn</button>

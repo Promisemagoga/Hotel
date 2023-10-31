@@ -55,6 +55,7 @@ function SignUp({ setIsAuthenticated, setRegisterOpenModal }) {
                 <input
                   type="text"
                   className="loginInput"
+                  required
                   onChange={(event) => setEmail(event.target.value)}
                 />
               </label>
