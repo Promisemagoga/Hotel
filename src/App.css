@@ -81,29 +81,102 @@
   width: 95%;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   padding: 20px;
+  border-radius: 10px;
 }
 
-.room h1{
-  font-size: 50px;
+.availabilityForm{
+  width: 70%;
+  display: flex;
+  flex-direction: row;
+  column-gap: 50px;
+  align-items: center;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: auto;
+  margin-right: auto;
+
 }
 
-.room h2{
+.imgSide {
+  width: "50%"
+}
+
+.dataSide {
+  width: 50%;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 36px;
+}
+
+.roomMainImg {
+  width: 100%
+}
+
+.roomDetailsH2{
+ display: "flex";
+  flex-direction: row;
+  column-gap: 10px;
+ align-items: center;
+  justify-content: center;
+}
+
+
+
+.room h1 {
+  font-size: 2.5rem;
+}
+
+.room h2 {
   font-size: 20px;
+  font-weight: 600;
   margin-bottom: 10px;
 }
 
-/* .room {
+.bookingForm {
+  width: 50%;
   display: flex;
   flex-direction: column;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: left;
-  margin-top: 30px;
-  margin-bottom: 50px;
-  width: 95%;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  row-gap: 55px;
+  height: 60vh;
+  align-items: center;
   padding: 20px;
-} */
+  justify-content: center;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+
+}
+
+.bookingForm label, input{
+  width: 100%;
+}
+
+.bookingForm input{
+  height: 5vh;
+}
+
+.roomDetSide{
+  width: 50%;
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  justify-content: center;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  padding: 10px;
+}
+
+.roomDetSide h1{
+  margin-top: 20px;
+}
+
+.roomDetSide h2{
+  font-size: 1.5rem;
+}
+
+.checkMainImg{
+  width: 100%;
+  height: 30vh;
+}
 
 
 
@@ -190,11 +263,27 @@ p {
   gap: 20px;
 }
 
+.grid-cont{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+  padding: 20px;
+}
+
 .grid-item {
   background-color: #f2f2f2;
   padding: 10px;
   border-radius: 5px;
   margin-top: 5vh;
+}
+
+.gridItem{
+  width: 100%;
+  background-color: #f2f2f2;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 5vh;
+  margin-bottom: 5vh;
 }
 
 .main-image {
@@ -282,6 +371,33 @@ p {
 .viewDealBtn {
   height: 40px;
   background-color: #61dafb;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+}
+
+.checkAvailabilityBtn {
+  width: 100%;
+  height: 40px;
+  background-color: #61dafb;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+}
+
+.paymentBtn {
+  width: 100%;
+  height: 40px;
+  background-color: green;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+}
+
+.cancelBtn {
+  width: 100%;
+  height: 40px;
+  background-color: red;
   color: #ffffff;
   border: none;
   border-radius: 5px;
@@ -518,6 +634,14 @@ li {
   column-gap: 30px;
 }
 
+.adminNavBr{
+  height: 80px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  margin-bottom: 30px;
+}
+
+
+
 @media screen and (max-width: 768px) {
   .footerContainer {
     display: flex;
@@ -672,5 +796,31 @@ li {
     position: absolute;
 
   }
+
+  .room {
+    display: flex;
+    flex-direction: column;
+    border-radius: 0px;
+  }
+
+  .imgSide {
+    width: 100%
+  }
+  
+  .dataSide {
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 36px;
+  }
+  
+  .icons {
+    display: flex;
+    flex-direction: column;
+
+  }
+  
+
 
 }

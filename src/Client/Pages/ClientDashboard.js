@@ -50,12 +50,12 @@ function ClientDashboard({ setRoomId }, props) {
               <div className="bed-occupants-button">
                 <div className='roomInfo'>
                   <h3 className="roomCard-headings">
-                    <Hotel/>
+                    <Hotel style={{color:"#61DAFB"}}/>
                     {data.beds}
                   </h3>
                   <br />
                   <h3 className="roomCard-headings">
-                    <PersonOutline/>
+                    <PersonOutline style={{color:"#61DAFB"}}/>
                     {data.occupants}
                   </h3>
                 </div>

@@ -33,7 +33,7 @@ function ClientRoom(props) {
 
 
     function bookRoom() {
-        navigate("/bookRoom")
+        navigate("/CheckAvailability")
     }
 
     return (
@@ -48,8 +48,8 @@ function ClientRoom(props) {
                     </div>
                 ) : (
                     <div className="room">
-                        <div style={{ width: "50%" }}>
-                            <img src={docData.mainImageUrl} style={{ width: "100%" }} />
+                        <div className="imgSide">
+                            <img src={docData.mainImageUrl} className="roomMainImg"/>
                             <div className="imageGalleryClient">
 
                                 {docData.galleryImagesUrl.map((images, index) => (
@@ -59,14 +59,11 @@ function ClientRoom(props) {
                                 ))}
                             </div>
                         </div>
-                        <div style={{ width: "50%", marginTop: "10px" }}>
+                        <div className="dataSide">
                             <h1>{docData.type}</h1>
+                            <div>
                             <h2>Description:</h2>
                             <p style={{ color: "#000" }}>{docData.description}</p>
-                            <div className="roomDetails icons">
-                                <h2 style={{ display: "flex", flexDirection: "row", columnGap: "10px", alignItems: "center", justifyContent: "center" }}><Hotel style={{ height: '38px', width: '38px', color: "#61dafb" }} />{docData.beds}</h2>
-                                <h2 style={{ display: "flex", flexDirection: "row", columnGap: "10px", alignItems: "center", justifyContent: "center" }}><Person style={{ height: '38px', width: '38px', color: "#61dafb" }} />{docData.occupants}</h2>
-                                <h2 style={{ display: "flex", flexDirection: "row", columnGap: "10px", alignItems: "center", justifyContent: "center" }}><MonetizationOn style={{ height: '38px', width: '38px', color: "#61dafb" }} />R{docData.price}</h2>
                             </div>
                             <div className="roomDetails">
                                 <div>
@@ -80,7 +77,12 @@ function ClientRoom(props) {
                                     </ul>
                                 </div>
                             </div>
-                            <button onClick={bookRoom} className="viewDealBtn">Check Availability</button>
+                            <div className="roomDetails icons">
+                                <h2 className="roomDetailsH2 "><Hotel style={{ height: '38px', width: '38px', color: "#61dafb", marginRight:"20px" }} />{docData.beds}</h2>
+                                <h2 className="roomDetailsH2 "><Person style={{ height: '38px', width: '38px', color: "#61dafb", marginRight:"20px"  }} />{docData.occupants}</h2>
+                                <h2 className="roomDetailsH2 "><MonetizationOn style={{ height: '38px', width: '38px', color: "#61dafb", marginRight:"20px"  }} />R{docData.price}</h2>
+                            </div>
+                            <button onClick={bookRoom} className="checkAvailabilityBtn">Check Availability</button>
                         </div>
                     </div>
                 )}

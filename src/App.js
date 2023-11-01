@@ -16,6 +16,10 @@ import Contact from './Client/Pages/Contact';
 import ClientDashboard from './Client/Pages/ClientDashboard';
 import ClientRoom from './Client/Pages/ClientRoom';
 import BookRoom from './Client/Pages/BookRoom';
+import CheckAvailability from './Client/Pages/CheckAvailability';
+import CheckOut from './Client/Pages/CheckOut';
+import ClientBooking from './Client/Pages/ClientBookings';
+import AdminDash from './Admin/Pages/AdminDash';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(
@@ -66,11 +70,16 @@ function App() {
     <Router>
       <Routes>
       {userRole === 'client' && <Route path="/" element={<ClientDashboard setRoomId={setRoomId} />} />}
+      {userRole === 'admin' && <Route path="/" element={<AdminDash setRoomId={setRoomId} />} />}
         {!userRole && <Route path="/" element={<Home setIsAuthenticated={setIsAuthenticated} />} />}
         <Route path="/About" element={<About />} />
         <Route path="/Contact" element={<Contact />} />
+        <Route path="/AdminDashboard" element={isAuthenticated ? <AdminDash setIsAuthenticated={setIsAuthenticated} /> : <Navigate to="/" />}></Route>
+        <Route path="/ClientDashboard" element={isAuthenticated ? <ClientDashboard setIsAuthenticated={setIsAuthenticated} /> : <Navigate to="/" />}></Route>
         <Route path="/ClientRoom" element={isAuthenticated ? <ClientRoom roomId={roomId} setIsAuthenticated={setIsAuthenticated} /> : <Navigate to="/" />}></Route>
-        <Route path="/bookRoom" element={isAuthenticated ? <BookRoom roomId={roomId} setIsAuthenticated={setIsAuthenticated} /> : <Navigate to="/" />}></Route>
+        <Route path="/CheckAvailability" element={isAuthenticated ? <CheckAvailability roomId={roomId} setIsAuthenticated={setIsAuthenticated} /> : <Navigate to="/" />}></Route>
+        <Route path="/CheckOut" element={isAuthenticated ? <CheckOut roomId={roomId} setIsAuthenticated={setIsAuthenticated} /> : <Navigate to="/" />}></Route>
+        <Route path="/ClientBooking" element={isAuthenticated ? <ClientBooking roomId={roomId} setIsAuthenticated={setIsAuthenticated} /> : <Navigate to="/" />}></Route>
       </Routes>
     </Router>
   );

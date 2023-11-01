@@ -1,20 +1,11 @@
-import React, { useState } from 'react'
-import Box from '@mui/material/Box';
-import Avatar from '@mui/material/Avatar';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import Divider from '@mui/material/Divider';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Tooltip from '@mui/material/Tooltip';
-import PersonAdd from '@mui/icons-material/PersonAdd';
-import Settings from '@mui/icons-material/Settings';
-import Logout from '@mui/icons-material/Logout';
-import { auth } from '../../Config/Firebase';
-import { Link } from 'react-router-dom';
+import { Avatar, Box, Divider, IconButton, ListItemIcon, Menu, MenuItem, Tooltip } from "@mui/material";
+import React, { useState } from "react";
+import { auth } from "../../Config/Firebase";
+import { Logout, Settings } from "@mui/icons-material";
 
-function NavBarDash() {
+
+function AdminNav() {
+
     const [anchorEl, setAnchorEl] = useState(null)
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
@@ -30,19 +21,12 @@ function NavBarDash() {
         window.location.reload();
       }
 
+
     return (
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}>
-            <div class="container-fluid">
-                <a href="#" class="navbar-brand">Pro_Stay</a>
-                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <div class="navbar-nav ms-auto">
-                        <Link to="/" class="nav-item nav-link active fs-5 ">Home</Link>
-                        <Link to="/ClientBooking" class="nav-item nav-link fs-5 ms-3 me-2">Bookings</Link>
-                        {/* <a href="/Contact" class="nav-item nav-link">Contact</a> */}
-                        <>
+        <div>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light" style={{ boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",height: "80px" }}>
+                <div class="container-fluid">
+                <>
                             <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
                                 <Tooltip title="Account settings">
                                     <IconButton
@@ -119,11 +103,25 @@ function NavBarDash() {
                                 </MenuItem>
                             </Menu>
                         </>
+                    <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarCollapse">
+                        <div class="navbar-nav ms-auto">
+                            <a href="/Home" class="nav-item nav-link active">Home</a>
+                            <a href="/About" class="nav-item nav-link">About</a>
+                            <a href="/Contact" class="nav-item nav-link">Contact</a>
+                            <form class="form-inline my-2 my-lg-0" style={{display:"flex", flexDirection:"row",columnGap: "20px"}}>
+                                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
+                                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </nav>
-    )
+            </nav>
+
+        </div>
+    );
 }
 
-export default NavBarDash
+export default AdminNav;
