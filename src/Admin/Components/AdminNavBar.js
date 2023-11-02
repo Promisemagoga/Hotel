@@ -37,7 +37,7 @@ function AdminNav() {
                                         aria-haspopup="true"
                                         aria-expanded={open ? 'true' : undefined}
                                     >
-                                        <Avatar sx={{ width: 35, height: 35}}><Avatar /></Avatar>
+                                        <Avatar style={{ width: 35, height: 35}}><Avatar /></Avatar>
                                     </IconButton>
                                 </Tooltip>
                             </Box>
@@ -102,9 +102,6 @@ function AdminNav() {
                     </button>
                     <div class="collapse navbar-collapse" id="navbarCollapse">
                         <div class="navbar-nav ms-auto">
-                            <a href="/Home" class="nav-item nav-link active">Home</a>
-                            <a href="/About" class="nav-item nav-link">About</a>
-                            <a href="/Contact" class="nav-item nav-link">Contact</a>
                             <form class="form-inline my-2 my-lg-0" style={{display:"flex", flexDirection:"row",columnGap: "20px"}}>
                                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
                                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>

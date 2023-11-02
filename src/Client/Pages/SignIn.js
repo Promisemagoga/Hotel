@@ -15,7 +15,6 @@ function SignIn({ setIsAuthenticated, setOpenModal }) {
     signInWithEmailAndPassword(auth, email, password)
       .then(() => {
         setIsAuthenticated();
-
         console.log("User Successfully logged in");
         window.location.reload();
       })
@@ -64,7 +63,7 @@ function SignIn({ setIsAuthenticated, setOpenModal }) {
                     name="password"
                     required
                   />
-                  <button onClick={togglePasswordVisibility} style={{ marginLeft: "-30px",color:"#000",backgroundColor: "transparent" }}>
+                  <button onClick={togglePasswordVisibility} style={{ marginLeft: "-30px", color: "#000", backgroundColor: "transparent" }}>
                     {showPassword ? <Visibility /> : <VisibilityOff />}
                   </button>
                 </div>

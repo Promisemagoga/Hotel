@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import { auth } from '../../Config/authFirebase';
 import { Link, useNavigate } from 'react-router-dom';
+import { auth } from '../../Config/Firebase';
+import { AddBox, AddBoxRounded, AddBoxTwoTone, AddRounded, Bed, Book, Home, Info, LoginOutlined } from '@mui/icons-material';
 
 function SideNavBar({setShowForm}) {
 const navigate = useNavigate()
@@ -12,16 +13,12 @@ const navigate = useNavigate()
     window.location.reload();
   }
 
- 
-  function showAddForm() {
-      setShowForm(true);
-  }
 
 
   return (
     <div
-      class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100"
-      style={{ backgroundColor: "#ffffff", borderRadius: "20px" }}
+      class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white"
+      style={{ backgroundColor: "#ffffff", borderRadius: "20px", minHeight: "90vh", height:"auto" }}
     >
       <Link
         to="/AdminDashboard"
@@ -29,7 +26,7 @@ const navigate = useNavigate()
       >
         <span class="fs-5 d-none d-sm-inline">
           {" "}
-          <h1>Pro_Stay</h1>
+          <h1 style={{color:"#46464D"}}>Pro_Stay</h1>
         </span>
       </Link>
       <ul
@@ -38,8 +35,8 @@ const navigate = useNavigate()
       >
         <li class="nav-item">
           <Link to="/AdminDashboard" class="nav-link align-middle px-0">
-            <i class="fa fa-home" aria-hidden="true"></i>{" "}
-            <span class="ms-1 d-none d-sm-inline">Home</span>
+            <Home style={{ height: '30px', width: '30px', color: "#61dafb"}}/>
+            <span class="ms-1 d-none d-sm-inline" style={{color:"#46464D"}}>Home</span>
           </Link>
         </li>
         <li>
@@ -47,53 +44,48 @@ const navigate = useNavigate()
             to="/AdminRooms"
             data-bs-toggle="collapse"
             class="nav-link px-0 align-middle"
+            style={{display:"flex", flexDirection:"row", justifyContent:"center",alignItems:"center"}}
           >
-            <i class="fa fa-bed" aria-hidden="true"></i>{" "}
-            <span class="ms-1 d-none d-sm-inline">Rooms</span>{" "}
+            <Bed style={{ height: '30px', width: '30px', color: "#61dafb"}}/>
+            <span class="ms-1 d-none d-sm-inline" style={{color:"#46464D"}}>Rooms</span>{" "}
           </Link>
           <ul
             class="collapse show nav flex-column ms-1"
             id="submenu1"
             data-bs-parent="#menu"
           >
-            <li class="w-100">
+            <li class="w-100" style={{display:"flex", flexDirection:"row", justifyContent:"center",alignItems:"center"}}>
               <a href="#" class="nav-link align-middle px-0">
-                <i class="fa fa-book" aria-hidden="true"></i>{" "}
-                <span class="ms-1 d-none d-sm-inline">Bookings</span>
+                <Book  style={{ height: '30px', width: '30px', color: "#61dafb"}}/>
+                <span class="ms-1 d-none d-sm-inline" style={{color:"#000"}}>Bookings</span>
               </a>
             </li>
             <li>
               <Link to="/AdminDashboard" class="nav-link align-middle px-0">
-                <i class="fa fa-info-circle" aria-hidden="true"></i>{" "}
-                <span class="ms-1 d-none d-sm-inline">Info</span>
+               <Info style={{ height: '30px', width: '30px', color: "#61dafb"}}/>
+                <span class="ms-1 d-none d-sm-inline" style={{color:"#46464D"}}>Info</span>
               </Link>
             </li>
           </ul>
         </li>
-        <li>
-          <Link to="#" class="nav-link align-middle px-0">
-            <i className="fa fa-wrench" aria-hidden="true"></i>{" "}
-            <span class="ms-1 d-none d-sm-inline">Settings</span>
-          </Link>
-        </li>
         <li class="nav-item">
-          <Link to="/AddRoom" class="nav-link align-middle px-0">
-            <i class="fa fa-plus-circle" aria-hidden="true"></i>{" "}
-            <span class="ms-1 d-none d-sm-inline">Add Room</span>
+          <Link to="/AddRom" class="nav-link align-middle px-0" >
+            <AddBoxTwoTone style={{ height: '30px', width: '30px', color: "#61dafb"}}/>
+            <span class="ms-1 d-none d-sm-inline" style={{color:"#46464D"}}>Add Room</span>
           </Link>
         </li>
         <li class="nav-link align-middle px-0">
-          <i class="fa fa-plus-square" aria-hidden="true" style={{ color: "#3D5D22" }}></i>{" "}
-          <span class="ms-1 d-none d-sm-inline">Add Hotel Info</span>
+        <AddBox style={{ height: '30px', width: '30px', color: "#61dafb"}}/>
+          <span class="ms-1 d-none d-sm-inline" style={{color:"#46464D"}}>Add Hotel Info</span>
           <ul
             class="collapse nav flex-column ms-1"
             id="submenu3"
             data-bs-parent="#menu"
           ></ul>
         </li>
-        <li class="nav-link px-0 align-middle">
+        <li class="nav-link px-0 align-middle" style={{marginTop:"450px"}}>
 
-          <i class="fa fa-sign-out" aria-hidden="true" onClick={logOut} style={{ color: "#3d5d22" }}></i>{" "}
+         <LoginOutlined style={{ height: '30px', width: '30px', color: "#61dafb",}}/>
           <span class="ms-1 d-none d-sm-inline" onClick={logOut}>
             Logout
           </span>{" "}
@@ -101,25 +93,6 @@ const navigate = useNavigate()
         </li>
       </ul>
       <hr />
-      <div class="dropdown pb-4">
-        <Link
-          to="#"
-          class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
-          id="dropdownUser1"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-        >
-          <img
-            src="./Admin.jpeg"
-            alt="admin"
-            width="30"
-            height="30"
-            class="rounded-circle"
-          />
-          <span class="d-none d-sm-inline mx-1">Profile</span>
-        </Link>
-      </div>
-      {/* {showForm && <AddNewRoomForm />} */}
     </div>
   )
 }
