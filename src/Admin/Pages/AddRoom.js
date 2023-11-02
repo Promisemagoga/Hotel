@@ -119,12 +119,13 @@ function AddNewRoomForm() {
             <AdminNav />
             <div className="Ad">
               <div className="addroomForm ">
-                <Paper sx={{width:"50%",marginTop: "50px",height:"80vh", padding: "20px",display:"flex", flexDirection:"column",rowGap: "20px"}}>
+                <Paper sx={{ width: "80%", marginTop: "50px", height: "80vh", padding: "20px", display: "flex", flexDirection: "column", rowGap: "20px" }}>
                   <h1>Add a new room</h1>
                   <div className="Row">
                     <select
                       name="type"
                       id=""
+                      style={{borderRadius:"0%"}}
                       onChange={(event) => setType(event.target.value)}
                     >
                       <option>Type</option>
@@ -144,6 +145,9 @@ function AddNewRoomForm() {
                       name="beds"
                       id=""
                       onChange={(event) => setBeds(event.target.value)}
+                      style={{ borderRadius: "0%" }}
+
+
                     >
                       <option>Beds</option>
                       <option>1 double bed</option>
@@ -165,6 +169,7 @@ function AddNewRoomForm() {
                     placeholder="Number of rooms available"
                     name="quantity"
                     onChange={(event) => setRoomQuantity(event.target.value)}
+                    style={{ width: "100%" }}
                   />
                   <textarea
                     name="description"
@@ -172,6 +177,7 @@ function AddNewRoomForm() {
                     cols="67"
                     rows="10"
                     placeholder="Description"
+                    style={{ width: "100%" }}
                     onChange={(event) => setDescription(event.target.value)}
                   ></textarea>
 
@@ -190,7 +196,7 @@ function AddNewRoomForm() {
                     multiple
                   />
                   <h2>Facilities available:</h2>
-                  {/* <FormGroup>
+                  <FormGroup>
                     <Grid container spacing={2}>
                       <Grid item xs={12} sm={4}>
                         <FormControlLabel control={<Checkbox />} label="Free Wifi" name="roomFacilities" />
@@ -214,11 +220,11 @@ function AddNewRoomForm() {
                         <FormControlLabel control={<Checkbox />} label="50' HDTV with Netflix, premium cabl" name="roomFacilities" />
                       </Grid>
                     </Grid>
-                  </FormGroup> */}
+                  </FormGroup>
                   <button className="formButtons" onClick={addButton}>
                     Add
                   </button>
-                  </Paper>
+                </Paper>
               </div>
             </div>
           </div>

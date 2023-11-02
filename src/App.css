@@ -516,6 +516,14 @@ p {
   border-radius: 20px;
 }
 
+.formButtons{
+  background-color: #61dafb;
+  border: none;
+  height: 40px;
+  color: #fff;
+  border-radius: 20px;
+}
+
 .roomEditForm select, input, textarea{
   width: 90%;
   height: 40px;
