@@ -55,10 +55,10 @@ const navigate = useNavigate()
             data-bs-parent="#menu"
           >
             <li class="w-100" style={{display:"flex", flexDirection:"row", justifyContent:"center",alignItems:"center"}}>
-              <a href="#" class="nav-link align-middle px-0">
+              <Link to="/AdminBooking" class="nav-link align-middle px-0">
                 <Book  style={{ height: '30px', width: '30px', color: "#61dafb"}}/>
                 <span class="ms-1 d-none d-sm-inline" style={{color:"#000"}}>Bookings</span>
-              </a>
+              </Link>
             </li>
             <li>
               <Link to="/AdminDashboard" class="nav-link align-middle px-0">

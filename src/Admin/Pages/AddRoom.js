@@ -119,7 +119,7 @@ function AddNewRoomForm() {
             <AdminNav />
             <div className="Ad">
               <div className="addroomForm ">
-                <Paper sx={{ width: "80%", marginTop: "50px", height: "80vh", padding: "20px", display: "flex", flexDirection: "column", rowGap: "20px" }}>
+                <Paper sx={{ width: "100%", marginTop: "50px", height: "80vh", padding: "20px", display: "flex", flexDirection: "column", rowGap: "20px" }}>
                   <h1>Add a new room</h1>
                   <div className="Row">
                     <select
