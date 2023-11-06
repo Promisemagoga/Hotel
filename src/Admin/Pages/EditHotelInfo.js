@@ -1,109 +1,117 @@
 import { doc, getDoc, updateDoc } from "firebase/firestore";
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 import { db } from "../../Config/Firebase";
+import { Checkbox, FormControlLabel, FormGroup, Grid } from "@mui/material";
 
-
-function EditInfoForm(props) {
+function EditInfo({ infoId, setEditForm }) {
   const [updatedData, setUpdatedData] = useState({
-    adress: "",
     email: "",
+    address: "",
     telephone: "",
     policies: "",
-  })
+  });
+
   useEffect(() => {
     const fetchData = async () => {
-      const docRef = doc(db, "info", "XEekKSA7mS7ID8CzrKvI");
-
+      const docRef = doc(db, "info", infoId);
+      console.log(infoId);
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
         const document = {
-          id: docSnap.id, ...docSnap.data()
-        }
+          id: docSnap.id,
+          ...docSnap.data(),
+        };
         setUpdatedData({
           adress: document.adress,
           email: document.email,
           telephone: document.telephone,
           policies: document.policies,
-        })
-        console.log(document);
-
+        });
       } else {
         console.log("No such document!");
       }
-    }
-    fetchData()
+    };
+    fetchData();
   }, []);
-
-
-
-
 
   function handleChange(event) {
     setUpdatedData({
-      ...updateData,
+      ...updatedData,
       [event.target.name]: event.target.value,
     });
   }
 
-
-
-  const updateData = (async () => {
-    const docRef = doc(db, "info", "XEekKSA7mS7ID8CzrKvI");
+  async function updateData() {
+    const docRef = doc(db, "info", infoId);
     await updateDoc(docRef, updatedData)
       .then(() => {
-        console.log('Data successfully updated!');
+        console.log("Data successfully updated!");
       })
       .catch((error) => {
-        console.error('Error updating data: ', error);
+        console.error("Error updating data: ", error);
       });
-  })
+  }
 
+  function closeModal() {
+    setEditForm(false);
+  }
+
+  const { email, adress, telephone, policies } = updatedData;
 
   return (
-    <div>
-      <div className="infoForm">
-        <h1>Edit hotel information</h1>
-        <label htmlFor="">
-          Adress
-          <br />
+    <div className="roomForm">
+      <div className="editRoom">
+        <h2
+          style={{
+            color: "#000",
+            fontWeight: "lighter",
+            textAlign: "right",
+            padding: 3,
+            cursor: "pointer",
+          }}
+          onClick={closeModal}
+        >
+          X
+        </h2>
+        <h1 style={{ textAlign: "center", marginBottom: "50px" }}>
+          Update room
+        </h1>
+        <div className="roomEditForm">
           <input
-            type="text"
-            onChange={handleChange}
-            name="adress"
-          />
-        </label>
-        <label htmlFor="">
-          Email Adress
-          <br />
-          <input
-            type="text"
-            onChange={handleChange}
+            placeholder="Email Address"
             name="email"
-
+            style={{ width: "100%", height: "50px" }}
+            onChange={handleChange}
+            value={email}
           />
-        </label>
-        <label htmlFor="">
-          Telephone Number
-          <br />
           <input
-            type="text"
+            placeholder="Address"
+            name="adress"
+            style={{ width: "100%", height: "50px" }}
             onChange={handleChange}
+            value={adress}
+          />
+          <input
+            placeholder="Telephone"
             name="telephone"
-          />
-        </label>
-        <label htmlFor="">
-          Hotel Policies
-          <br />
-          <textarea
+            style={{ width: "100%", height: "50px" }}
             onChange={handleChange}
-            name="policies"
+            value={telephone}
           />
-        </label>
-        <button onClick={updateData} className="formButtons">Save Changes</button>
+          <input
+            placeholder="Policies"
+            name="policies"
+            style={{ width: "100%", height: "50px" }}
+            onChange={handleChange}
+            value={policies}
+          />
+          <button className="formButtons" onClick={updateData}>
+            Update
+          </button>
+        </div>
       </div>
-
     </div>
-  )
+  );
 }
 
-export default EditInfoForm
+export default EditInfo;

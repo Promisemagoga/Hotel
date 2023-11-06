@@ -221,8 +221,9 @@ function AddNewRoomForm() {
                       </Grid>
                     </Grid>
                   </FormGroup>
+                  <br/>
                   <button className="formButtons" onClick={addButton}>
-                    Add
+                    ADD NEW ROOM
                   </button>
                 </Paper>
               </div>

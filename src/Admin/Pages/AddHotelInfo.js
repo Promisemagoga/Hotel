@@ -1,6 +1,9 @@
 import { addDoc, collection } from "firebase/firestore";
 import { useState } from "react";
 import { db } from "../../Config/Firebase";
+import { Paper } from "@mui/material";
+import SideNavBar from "../Components/AdminSideNav";
+import AdminNav from "../Components/AdminNavBar";
 
 function AddInfoForm() {
   const [adress, setAdress] = useState("");
@@ -23,51 +26,59 @@ function AddInfoForm() {
   };
 
   return (
-    <div>
-      <div className="infoForm">
-        <h1>Add hotel information</h1>
-        <label htmlFor="">
-          Adress
-          <br/>
-          <input
-            type="text"
-            onChange={(event) => setAdress(event.target.value)}
-            name="adress"
-          />
-        </label>
-        <label htmlFor="">
-          Email Adress
-          <br/>
-          <input
-            type="text"
-            onChange={(event) => setEmail(event.target.value)}
-            name="email"
+    <div className="AdminDashBoard">
+    <div class="container-fluid">
+      <div class="row flex-nowrap">
+        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-light">
+          <SideNavBar />
+        </div>
+        <div className="dashboardContent">
+          <AdminNav />
+          <div className="Ad">
+            <div className="addroomForm ">
+              <Paper sx={{ width: "100%", marginTop: "50px", height: "auto", padding: "20px", display: "flex", flexDirection: "column", rowGap: "20px" }}>
+                <h1>Add Hotel Info</h1>
+                  <input
+                    placeholder="Email Address"
+                    name="email"
+                    style={{width:"100%",height:"50px"}}
+                    onChange={(event) => setEmail(event.target.value)}
+                  />
+                  <input
+                    placeholder="Address"
+                    name="adress"
+                    style={{width:"100%",height:"50px"}}
 
-          />
-        </label>
-        <label htmlFor="">
-          Telephone Number
-          <br/>
-          <input
-            type="text"
-            onChange={(event) => setTelephone(event.target.value)}
-            name="telephone"
+                    onChange={(event) => setAdress(event.target.value)}
+                  />
+                   <input
+                    placeholder="Telephone"
+                    name="telephone"
+                    style={{width:"100%",height:"50px"}}
 
-          />
-        </label>
-        <label htmlFor="">
-          Hotel Policies
-          <br/>
-          <textarea
-            onChange={(event) => setPolicies(event.target.value)}
-            name="policies"
-          />
-        </label>
-        <button onClick={AddInfo} className="formButtons">Add</button>
+                    onChange={(event) => setTelephone(event.target.value)}
+                  />
+                   <input
+                    placeholder="Policies"
+                    name="policies"
+                    style={{width:"100%",height:"50px"}}
+
+                    onChange={(event) => setPolicies(event.target.value)}
+                  />
+            
+                <button className="formButtons" onClick={AddInfo}>
+                  ADD HOTEL INFO
+                </button>
+              </Paper>
+            </div>
+          </div>
+        </div>
       </div>
+      {/* {showForm && <AddNewRoomForm setShowForm={setShowForm} />} */}
 
     </div>
-  );
+  </div>
+);
 }
 
 export default AddInfoForm;

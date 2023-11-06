@@ -6,23 +6,17 @@ import { CalendarMonth, Email, Hotel, LocationCity, Map, MonetizationOn, Person,
 import SideNavBar from "../Components/AdminSideNav";
 import Footer from "../../Client/Components/Footer";
 import AdminNav from "../Components/AdminNavBar";
+import EditInfo from "./EditHotelInfo";
 
 
 
 function AdminHotelInfo(props) {
-    const [dates, setDates] = useState({ checkin: "", checkout: "" });
-    const [name, setName] = useState("");
+
     const [loading, setLoading] = useState(true);
-    const [loadingPayment, setLoadingPayment] = useState(false);
-
-    const [booking, setBooking] = useState([]);
-    const [roomId, setRoomId] = useState(props.roomId);
-    const [docData, setDocData] = useState(null);
-
     const navigate = useNavigate()
     const location = useLocation()
-
     const [hotelInfo, setHotelinfo] = useState([]);
+
     const getInfo = async () => {
         try {
             const querrySnapShot = await getDocs(collection(db, "info"));
@@ -38,8 +32,10 @@ function AdminHotelInfo(props) {
         getInfo();
     }, []);
 
-    const deleteFunc = async () => {
-        const docRef = doc(db, "info", "XEekKSA7mS7ID8CzrKvI");
+    const deleteFunc = async (id) => {
+        console.log(id);
+
+        const docRef = doc(db, "info", id);
         deleteDoc(docRef)
             .then(() => {
                 console.log("Document successfully deleted!");
@@ -49,9 +45,15 @@ function AdminHotelInfo(props) {
             });
     };
 
+    const[selectedInfo, setSelectedInfo] = useState(null)
     const [showEditForm, setEditForm] = useState(false);
-    function updateFunc() {
+    function updateFunc(data) {
+        console.log(data);
+        console.log("hii");
+        const infoId = data.id
+        console.log(infoId);
         setEditForm(!showEditForm);
+        setSelectedInfo(infoId)
     }
 
 
@@ -103,8 +105,8 @@ function AdminHotelInfo(props) {
                                                             <i className="fa fa-instagram" aria-hidden="true"></i>
                                                         </div>
                                                         <div className="infoCrudButtons">
-                                                            <button onClick={deleteFunc} class="btn btn-outline-success my-2 my-sm-0" >Delete</button>
-                                                            <button onClick={updateFunc} class="btn btn-outline-danger my-2 my-sm-0">Update</button>
+                                                            <button onClick={() => updateFunc(data)} class="btn btn-outline-success my-2 my-sm-0">Update</button>
+                                                            <button onClick={() => deleteFunc(data.id)} class="btn btn-outline-danger my-2 my-sm-0"  >Delete</button>
                                                         </div>
                                                     </div>
                                                 ))}
@@ -128,12 +130,7 @@ function AdminHotelInfo(props) {
                                         </div>
                                     ))}
                                 </div>
-                                {loadingPayment && (
-                                    <div className="loading">
-                                        <h2 style={{ fontWeight: "lighter", textAlign: "center" }}>Processing Payment...</h2>
-                                        <div className="loader"></div>
-                                    </div>
-                                )}
+                                {showEditForm && <EditInfo setEditForm={setEditForm} infoId={selectedInfo}/>}
                             </>
                         </div>
                     </div>

@@ -24,6 +24,7 @@ import EditRoom from './Admin/Pages/EditRoom';
 import AddNewRoomForm from './Admin/Pages/AddRoom';
 import AdminBooking from './Admin/Pages/AdminBookings';
 import AdminHotelInfo from './Admin/Pages/AdminHotelInfo';
+import AddInfoForm from './Admin/Pages/AddHotelInfo';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(
@@ -87,7 +88,7 @@ function App() {
         <Route path="/AddRom" element={isAuthenticated ? <AddNewRoomForm roomId={roomId} setIsAuthenticated={setIsAuthenticated} /> : <Navigate to="/" />}></Route>
         <Route path="/AdminBooking" element={isAuthenticated ? <AdminBooking roomId={roomId} setIsAuthenticated={setIsAuthenticated} /> : <Navigate to="/" />}></Route>
         <Route path="/AdminHotelInfo" element={isAuthenticated ? <AdminHotelInfo roomId={roomId} setIsAuthenticated={setIsAuthenticated} /> : <Navigate to="/" />}></Route>
-
+        <Route path="/AddInfo" element={isAuthenticated ? <AddInfoForm roomId={roomId} setIsAuthenticated={setIsAuthenticated} /> : <Navigate to="/" />}></Route>
         {/* <Route path="/EditRoom" element={isAuthenticated ? <EditRoom roomId={roomId} setIsAuthenticated={setIsAuthenticated} /> : <Navigate to="/" />}></Route> */}
 
       </Routes>
