@@ -23,6 +23,7 @@ import AdminDash from './Admin/Pages/AdminDash';
 import EditRoom from './Admin/Pages/EditRoom';
 import AddNewRoomForm from './Admin/Pages/AddRoom';
 import AdminBooking from './Admin/Pages/AdminBookings';
+import AdminHotelInfo from './Admin/Pages/AdminHotelInfo';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(
@@ -85,7 +86,7 @@ function App() {
         <Route path="/ClientBooking" element={isAuthenticated ? <ClientBooking roomId={roomId} setIsAuthenticated={setIsAuthenticated} /> : <Navigate to="/" />}></Route>
         <Route path="/AddRom" element={isAuthenticated ? <AddNewRoomForm roomId={roomId} setIsAuthenticated={setIsAuthenticated} /> : <Navigate to="/" />}></Route>
         <Route path="/AdminBooking" element={isAuthenticated ? <AdminBooking roomId={roomId} setIsAuthenticated={setIsAuthenticated} /> : <Navigate to="/" />}></Route>
-
+        <Route path="/AdminHotelInfo" element={isAuthenticated ? <AdminHotelInfo roomId={roomId} setIsAuthenticated={setIsAuthenticated} /> : <Navigate to="/" />}></Route>
 
         {/* <Route path="/EditRoom" element={isAuthenticated ? <EditRoom roomId={roomId} setIsAuthenticated={setIsAuthenticated} /> : <Navigate to="/" />}></Route> */}
 

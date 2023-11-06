@@ -1,33 +1,26 @@
-import React, { useState } from 'react'
-import AdminNav from '../Components/AdminNavBar';
-import { collection, deleteDoc, doc, getDocs } from 'firebase/firestore';
-import { db } from '../../Config/Firebase';
-import { Link, useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
-import SideNavBar from '../Components/AdminSideNav';
-import AddNewRoomForm from './AddRoom';
-import AddInfoForm from './AddHotelInfo';
-import EditInfoForm from './EditHotelInfo';
-import { FaEdit, FaTrash } from 'react-icons/fa';
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, styled, tableCellClasses } from '@mui/material';
+import { useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { auth, db } from "../../Config/Firebase";
+import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, query } from "firebase/firestore";
+import { CalendarMonth, Hotel, MonetizationOn, Person } from "@mui/icons-material";
+import SideNavBar from "../Components/AdminSideNav";
+import Footer from "../../Client/Components/Footer";
+import AdminNav from "../Components/AdminNavBar";
 
-function AdminDash() {
-    const [loading, setLoading] = useState(false);
-    const navigate = useNavigate();
-    const [showForm, setShowForm] = useState(false);
 
-    const [showInfoForm, setShowInfoForm] = useState(false);
-    function showAddInfo() {
-        setShowInfoForm(!showInfoForm);
-    }
 
-    const [showEditForm, setEditForm] = useState(false);
-    function updateFunc() {
-        setEditForm(!showEditForm);
-    }
+function AdminHotelInfo(props) {
+    const [dates, setDates] = useState({ checkin: "", checkout: "" });
+    const [name, setName] = useState("");
+    const [loading, setLoading] = useState(true);
+    const [loadingPayment, setLoadingPayment] = useState(false);
 
-    const [search, setSearch] = useState("");
-    const [result, setResult] = useState([]);
+    const [booking, setBooking] = useState([]);
+    const [roomId, setRoomId] = useState(props.roomId);
+    const [docData, setDocData] = useState(null);
+
+    const navigate = useNavigate()
+    const location = useLocation()
 
     const [hotelInfo, setHotelinfo] = useState([]);
     const getInfo = async () => {
@@ -38,6 +31,7 @@ function AdminDash() {
                 ...doc.data(),
             }));
             setHotelinfo(data);
+            setLoading(false)
         } catch (error) { }
     };
     useEffect(() => {
@@ -55,185 +49,90 @@ function AdminDash() {
             });
     };
 
+    const [showEditForm, setEditForm] = useState(false);
+    function updateFunc() {
+        setEditForm(!showEditForm);
+    }
 
-    const [rooms, setRooms] = useState([]);
-    useEffect(() => {
-        getRooms();
-    }, []);
-
-    const getRooms = async () => {
-        try {
-            const querrySnapShot = await getDocs(collection(db, "rooms"));
-            const data = querrySnapShot.docs.map((doc) => ({
-                id: doc.id,
-                ...doc.data(),
-            }));
-            setRooms(data);
-        } catch (error) {
-            console.log(error);
-        }
-    };
-
-    const StyledTableCell = styled(TableCell)(({ theme }) => ({
-        [`&.${tableCellClasses.head}`]: {
-            backgroundColor: theme.palette.common.black,
-            color: theme.palette.common.white,
-        },
-        [`&.${tableCellClasses.body}`]: {
-            fontSize: 14,
-        },
-    }));
-
-    const StyledTableRow = styled(TableRow)(({ theme }) => ({
-        '&:nth-of-type(odd)': {
-            backgroundColor: theme.palette.action.hover,
-        },
-        // hide last border
-        '&:last-child td, &:last-child th': {
-            border: 0,
-        },
-    }));
 
     return (
-        <div>
-            <div className="contactBody">
-                {loading ? (
-                    <div className="loading">
-                        <h2 style={{ fontWeight: "lighter", textAlign: "center" }}>Loading...</h2>
-                        <div className="loader">
-                        </div>
+        <div className="AdminDashBoard">
+            <div class="container-fluid">
+                <div class="row flex-nowrap">
+                    <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-light">
+                        <SideNavBar />
                     </div>
-                ) : (
-                    <div className="AdminDashBoard">
-                        <div class="container-fluid">
-                            <div class="row flex-nowrap">
-                                <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-light">
-                                    <SideNavBar setShowForm={setShowForm} />
-                                </div>
-                                <div className="dashboardContent">
-                                    <AdminNav />
-                                    <div className="Ad">
-                                        <TableContainer component={Paper}>
-                                            <Table sx={{ minWidth: 700 }} aria-label="customized table">
-                                                {/*  <thead>
-                                                <tr>
-                                                    <th>Image</th>
-                                                    <th>Type</th>
-                                                    <th>Details</th>
-                                                    <th>Price</th>
-                                                    <th>Action</th>
-
-                                                </tr>
-                                               </thead> */}
-
-                                                <TableHead>
-                                                    <TableRow>
-                                                        <StyledTableCell>Image</StyledTableCell>
-                                                        <StyledTableCell align="right">Type</StyledTableCell>
-                                                        <StyledTableCell align="right">Details</StyledTableCell>
-                                                        <StyledTableCell align="right">Price</StyledTableCell>
-                                                        <StyledTableCell align="right">Actions</StyledTableCell>
-                                                    </TableRow>
-                                                </TableHead>
-                                                {/* {rooms.map((data, index) => (
-                                              <tbody key={index}>
-                                                <tr>
-                                                    <td>
-                                                        <img src={data.mainImageUrl} style={{ width: "100px", height: "100px", borderRadius: "100%" }} />
-                                                    </td>
-                                                    <td>{data.type}</td>
-                                                    <td>{data.description}</td>
-                                                    <td>{data.price}</td>
-                                                    <td>
-                                                        <FaTrash />
-                                                        <FaEdit />
-                                                    </td>
-                                                </tr>
-                                             </tbody>
-                                             ))} */}
-                                                <TableBody>
-                                                    {rooms.map((data, index) => (
-                                                        <StyledTableRow key={data.index}>
-                                                            <StyledTableCell component="th" scope="row">
-                                                                <img src={data.mainImageUrl} style={{ width: "100px", height: "100px", borderRadius: "100%" }} />
-                                                            </StyledTableCell>
-                                                            <StyledTableCell align="right">{data.type}</StyledTableCell>
-                                                            <StyledTableCell align="right">{data.description}</StyledTableCell>
-                                                            <StyledTableCell align="right">{data.price}</StyledTableCell>
-                                                            <StyledTableCell align="right">
-                                                                <FaTrash />
-                                                                <FaEdit />
-                                                            </StyledTableCell>
-                                                        </StyledTableRow>
-                                                    ))}
-                                                </TableBody>
-                                                </Table >
-                                        </TableContainer>
-                                        {/* <div className="contentCards">
-                                            <Link
-                                                to="/AdminRooms"
-                                                className="rooms-Card"
-                                                style={{ color: "white", textDecoration: "none" }}
-                                            >
-                                                <div>
-                                                    <h2>Types of rooms offered in Pro_Stay:</h2>
-                                                    <ul>
-                                                        <li>Double delux room</li>
-                                                        <li>Self-Catering room</li>
-                                                        <li>Suite</li>
-                                                    </ul>
-                                                </div>
-                                            </Link>
-                                            <div className="infoCard">
-                                                {hotelInfo.map((data, index) => (
-                                                    <div className="infoCardContent" key={index}>
-                                                        <h3>
-                                                            <i className="fa fa-map-marker" aria-hidden="true"></i>
-                                                            {data.adress}
-                                                        </h3>
-                                                        <h3>
-                                                            <i className="fa fa-envelope" aria-hidden="true"></i>
-                                                            {data.email}
-                                                        </h3>
-                                                        <h3>
-                                                            <i className="fa fa-phone" aria-hidden="true"></i>
-                                                            {data.telephone}
-                                                        </h3>
-                                                        <Link to="/HotelPolicy" color="green">
-                                                            Hotel policies
-                                                        </Link>
-                                                        <div className="icons">
-                                                            <i
-                                                                className="fa fa-facebook-official"
-                                                                aria-hidden="true"
-                                                            ></i>
-                                                            <i
-                                                                className="fa fa-twitter-square"
-                                                                aria-hidden="true"
-                                                            ></i>
-                                                            <i className="fa fa-instagram" aria-hidden="true"></i>
-                                                        </div>
-                                                        <div className="infoCrudButtons">
-                                                            <button onClick={deleteFunc}>Delete</button>
-                                                            <button onClick={updateFunc}>Update</button>
-                                                        </div>
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        </div> */}
-                                        {showInfoForm && <AddInfoForm />}
-                                        {showEditForm && <EditInfoForm />}
+                    <div className="dashboardContent">
+                        <AdminNav />
+                        <div className="contactBody">
+                            {loading ? (
+                                <div className="loading">
+                                    <h2 style={{ fontWeight: "lighter", textAlign: "center" }}>Loading...</h2>
+                                    <div className="loader">
                                     </div>
                                 </div>
-                            </div>
-                            {/* {showForm && <AddNewRoomForm setShowForm={setShowForm} />} */}
+                            ) : (
+                                <div className="infoMainContainer">
+                                    <div className="hotelDetailsContainer">
 
+                                        <div style={{ width: "100%" }}>
+                                            {hotelInfo.map((data, index) => (
+                                                <div className="infoCardContent" key={index}>
+                                                    <h3>
+                                                        <i className="fa fa-map-marker" aria-hidden="true"></i>
+                                                        {data.adress}
+                                                    </h3>
+                                                    <h3>
+                                                        <i className="fa fa-envelope" aria-hidden="true"></i>
+                                                        {data.email}
+                                                    </h3>
+                                                    <h3>
+                                                        <i className="fa fa-phone" aria-hidden="true"></i>
+                                                        {data.telephone}
+                                                    </h3>
+                                                    <Link to="/HotelPolicy" color="green">
+                                                        Hotel policies
+                                                    </Link>
+                                                    <div className="icons">
+                                                        <i
+                                                            className="fa fa-facebook-official"
+                                                            aria-hidden="true"
+                                                        ></i>
+                                                        <i
+                                                            className="fa fa-twitter-square"
+                                                            aria-hidden="true"
+                                                        ></i>
+                                                        <i className="fa fa-instagram" aria-hidden="true"></i>
+                                                    </div>
+                                                    <div className="infoCrudButtons">
+                                                        <button onClick={deleteFunc}>Delete</button>
+                                                        <button onClick={updateFunc}>Update</button>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                    <div className="mapSide">
+                                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d28745.29310410046!2d28.22549181340048!3d-25.765224095417107!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e956057c13cbcc9%3A0x265c611461e24f9!2sLynnwood%2C%20Pretoria%2C%200081!5e0!3m2!1sen!2sza!4v1699192704465!5m2!1sen!2sza" width="100%" height="450" style={{ border: 0 }} allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                    </div>
+                                </div>
+                            )}
+                            {loadingPayment && (
+                                <div className="loading">
+                                    <h2 style={{ fontWeight: "lighter", textAlign: "center" }}>Processing Payment...</h2>
+                                    <div className="loader"></div>
+                                </div>
+                            )}
                         </div>
                     </div>
-                )}
+                </div>
             </div>
-        </div >
-    )
+        </div>
+    );
+
+
+
 }
 
-export default AdminDash
+export default AdminHotelInfo;
+

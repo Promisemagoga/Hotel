@@ -93,7 +93,7 @@ function AdminDash(props) {
 
     const StyledTableCell = styled(TableCell)(({ theme }) => ({
         [`&.${tableCellClasses.head}`]: {
-            backgroundColor: theme.palette.common.black,
+            backgroundColor: "#00AEEF",
             color: theme.palette.common.white,
         },
         [`&.${tableCellClasses.body}`]: {
@@ -103,12 +103,12 @@ function AdminDash(props) {
 
     const StyledTableRow = styled(TableRow)(({ theme }) => ({
         '&:nth-of-type(odd)': {
-            backgroundColor: "#46464d",
+            backgroundColor: "#fff",
 
         },
 
         '&:nth-of-type(even)': {
-            backgroundColor: "#1E1E1E",
+            backgroundColor: "#E0F4FF",
 
 
         },
@@ -156,9 +156,9 @@ function AdminDash(props) {
                                                             <StyledTableCell component="th" scope="row">
                                                                 <img src={data.mainImageUrl} style={{ width: "100px", height: "100px", borderRadius: "100%" }} />
                                                             </StyledTableCell>
-                                                            <StyledTableCell align="left" sx={{ color: "#fff" }}>{data.type}</StyledTableCell>
-                                                            <StyledTableCell align="left" sx={{ color: "#fff" }}>{data.description}</StyledTableCell>
-                                                            <StyledTableCell align="left" sx={{ color: "#fff" }}>R{data.price}</StyledTableCell>
+                                                            <StyledTableCell align="left" sx={{ color: "#000" }}>{data.type}</StyledTableCell>
+                                                            <StyledTableCell align="left" sx={{ color: "#000" }}>{data.description}</StyledTableCell>
+                                                            <StyledTableCell align="left" sx={{ color: "#000" }}>R{data.price}</StyledTableCell>
                                                             <StyledTableCell align="right"  >
                                                                 <div className='crud'>
                                                                     <FaEdit size={23} style={{ color: "green" }} onClick={() => editFunc(data)} />

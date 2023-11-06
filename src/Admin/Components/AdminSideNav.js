@@ -61,7 +61,7 @@ const navigate = useNavigate()
               </Link>
             </li>
             <li>
-              <Link to="/AdminDashboard" class="nav-link align-middle px-0">
+              <Link to="/AdminHotelInfo" class="nav-link align-middle px-0">
                <Info style={{ height: '30px', width: '30px', color: "#61dafb"}}/>
                 <span class="ms-1 d-none d-sm-inline" style={{color:"#46464D"}}>Info</span>
               </Link>
