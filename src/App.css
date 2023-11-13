@@ -1008,7 +1008,7 @@ th {
     align-items: center;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 30;
-    padding: 20px;
+    padding-bottom: 20px;
     position: absolute;
 
   }
