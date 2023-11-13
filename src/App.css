@@ -86,7 +86,7 @@
 }
 
 .availabilityForm {
-  width: 70%;
+  width: 80%;
   display: flex;
   flex-direction: row;
   column-gap: 50px;
@@ -153,6 +153,7 @@
   flex-direction: column;
   row-gap: 55px;
   height: 60vh;
+  padding: 20px;
   align-items: center;
   justify-content: center;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
@@ -322,11 +323,12 @@ p {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
+  margin: 10px;
 }
 
 .grid-cont {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
   gap: 20px;
   padding: 20px;
 }
@@ -529,8 +531,7 @@ textarea {
   text-indent: 10px;
 }
 
-.addroomForm 
-textarea {
+.addroomForm textarea {
   width: 100%;
   height: 100px;
   text-indent: 10PX;
@@ -607,7 +608,7 @@ textarea {
 .roomEditForm select,
 input,
 textarea {
-  width: 90%;
+  width: 100%;
   height: 50px;
 }
 
@@ -910,6 +911,7 @@ th {
     display: flex;
     flex-direction: column;
     row-gap: 20px;
+    padding-bottom: 20px;
   }
 
 
@@ -998,6 +1000,7 @@ th {
     align-items: center;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 30;
+    padding-bottom: 20px;
     position: absolute;
 
   }
@@ -1026,6 +1029,56 @@ th {
 
   }
 
+  .headerContent p {
 
+    font-size: 2.5vw;
+
+  }
+
+  .availabilityForm {
+    width: 90%;
+    display: flex;
+    flex-direction: column-reverse;
+    row-gap: 50px;
+    align-items: center;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
+
+  }
+
+  .roomDetSide {
+    width: 100%;
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    justify-content: center;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    padding: 10px;
+  }
+
+  .bookingForm {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 55px;
+    height: 65vh;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    align-items: center;
+    justify-content: center;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+
+  }
+
+  
+  .grid-cont {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+  }
 
 }

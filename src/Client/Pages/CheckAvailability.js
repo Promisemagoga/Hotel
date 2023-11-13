@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import NavBarDash from "../Components/NavBarDash";
 import Footer from "../Components/Footer";
 import { db } from "../../Config/Firebase";
-import { collection, doc, getDoc, getDocs, query } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, query, where } from "firebase/firestore";
 import { CalendarMonth, Hotel, MonetizationOn, Person } from "@mui/icons-material";
 
 
@@ -18,52 +18,106 @@ function CheckAvailability(props) {
     const [booking, setBooking] = useState([]);
 
 
+    // const checkAvailabilityBtn = async () => {
+    //     const bookingRef = collection(db, "booking");
+    //     const q = query(bookingRef);
+    //     const querySnapshot = await getDocs(q);
+
+    //     var arrAyToStore = []
+
+    //     querySnapshot.forEach((doc) => {
+    //         // console.log(doc.data().roomdata.type);
+    //         if (doc.data().roomdata.type === docData.type) {
+    //             arrAyToStore.push({ id: doc.id, ...doc.data() });
+    //         }
+    //     });
+    //     console.log(arrAyToStore.length);
+    //     if (arrAyToStore.length >= 0) {
+    //         alert("Room is not available on the selected date.");
+    //     } else {
+    //          alert("Room is available for booking");
+             
+    //         navigate("/CheckOut", { state: { dates } })
+    //              // const matchingDates = [];
+    //         // console.log(matchingDates);
+    //         // // arrAyToStore.forEach((doc) => {
+    //         // //   matchingDates.push(doc.data().dates.checkin);
+    //         // // });
+    //         // console.log(matchingDates);
+    //         // setBooking(matchingDates);
+         
+    //     }
+
+    //     // console.log(querySnapshot);
+
+    //     // if (querySnapshot.empty) {
+    //     //   alert("Room is available for booking");
+    //     //   navigate("/CheckOut",  { state: { dates } })
+
+    //     // } else {
+    //     //   const matchingDates = [];
+    //     //   console.log(matchingDates);
+    //     //   querySnapshot.forEach((doc) => {
+    //     //     matchingDates.push(doc.data().dates.checkin);
+    //     //   });
+    //     //   console.log(matchingDates);
+    //     //   setBooking(matchingDates);
+    //     //   alert("Room is not available on the selected date.");
+    //     // }
+    // };
+
     const checkAvailabilityBtn = async () => {
         const bookingRef = collection(db, "booking");
-        const q = query(bookingRef);
+        const q = query(bookingRef, where("dates.checkin", ">=", dates.checkin || "dates.checkout", "<=", dates.checkout));
         const querySnapshot = await getDocs(q);
-
-        var arrAyToStore = []
-
-        querySnapshot.forEach((doc) => {
-            // console.log(doc.data().roomdata.type);
-            if (doc.data().roomdata.type === docData.type) {
-                arrAyToStore.push({ id: doc.id, ...doc.data() });
-            }
-        });
-        console.log(arrAyToStore.length);
-        if (arrAyToStore.length >= 0) {
-            alert("Room is available for booking");
-            navigate("/CheckOut", { state: { dates } })
-
+    
+        if (querySnapshot.empty) {
+          alert("Room is available for booking");
+          navigate("/CheckOut",  { state: { dates } })
         } else {
-            const matchingDates = [];
-            console.log(matchingDates);
-            // arrAyToStore.forEach((doc) => {
-            //   matchingDates.push(doc.data().dates.checkin);
-            // });
-            console.log(matchingDates);
-            setBooking(matchingDates);
-            alert("Room is not available on the selected date.");
+          const matchingDates = [];
+          querySnapshot.forEach((doc) => {
+            matchingDates.push(doc.data().dates.checkin);
+          });
+          setBooking(matchingDates);
+          alert("Room is not available on the selected date.");
         }
+      };
 
-        // console.log(querySnapshot);
-
-        // if (querySnapshot.empty) {
-        //   alert("Room is available for booking");
-        //   navigate("/CheckOut",  { state: { dates } })
-
-        // } else {
-        //   const matchingDates = [];
-        //   console.log(matchingDates);
-        //   querySnapshot.forEach((doc) => {
-        //     matchingDates.push(doc.data().dates.checkin);
-        //   });
-        //   console.log(matchingDates);
-        //   setBooking(matchingDates);
-        //   alert("Room is not available on the selected date.");
-        // }
-    };
+    // const checkAvailabilityBtn = async () => {
+    //     const bookingRef = collection(db, "booking");
+    //     const q = query(bookingRef);
+    //     const querySnapshot = await getDocs(q);
+      
+    //     var arrAyToStore = [];
+      
+    //     querySnapshot.forEach((doc) => {
+    //       if (doc.data().roomdata.type === docData.type) {
+    //         arrAyToStore.push({ id: doc.id, ...doc.data() });
+    //       }
+    //     });
+      
+    //     console.log(arrAyToStore.length);
+    //      const matchingDates = [];
+    //     if (arrAyToStore.length > 0) {
+    //       alert("Room is not available on the selected date.");
+    //     } else {
+       
+      
+    //       arrAyToStore.forEach((doc) => {
+    //         matchingDates.push(doc.data().dates.checkin);
+    //       });
+      
+    //       setBooking(matchingDates);
+      
+    
+      
+    //       navigate("/CheckOut", { state: { dates } });
+      
+    //       alert("Room is available for booking");
+    //     }
+    //   };
+      
     console.log(booking);
 
 

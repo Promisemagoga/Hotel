@@ -14,7 +14,6 @@ function SignIn({ setIsAuthenticated, setOpenModal }) {
   const login = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then(() => {
-        setIsAuthenticated();
         console.log("User Successfully logged in");
         window.location.reload();
       })

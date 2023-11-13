@@ -23,7 +23,6 @@ function CheckOut(props) {
 
     const bookRoom = async () => {
         const dates = location.state.dates
-        console.log(dates);
         try {
             const roomRef = doc(db, "rooms", props.roomId);
             const docSnap = await getDoc(roomRef);
@@ -39,6 +38,11 @@ function CheckOut(props) {
             console.log(error);
         }
 
+    }
+
+    const cancelBooking = () =>{
+        alert("Transaction cancelled")
+        navigate("/")
     }
 
     useEffect(() => {
@@ -126,7 +130,7 @@ function CheckOut(props) {
                             </div>
                             <div style={{ width: "100%", display: "flex", flexDirection: "row", columnGap: "5px" }}>
                                 <button onClick={bookRoom} className="paymentBtn">Make Payment</button>
-                                <button onClick={bookRoom} className="cancelBtn">Cancel</button>
+                                <button onClick={cancelBooking} className="cancelBtn">Cancel</button>
                             </div>
                         </div>
                         <div className="roomDetSide">
