@@ -176,6 +176,10 @@
 
 }
 
+.hotelDetailsContainer h3{
+  font-size: 2rem;
+}
+
 .hotelPolicies {
   width: 100%;
   display: flex;
@@ -333,9 +337,13 @@ p {
   padding: 20px;
 }
 
+.bed-occupants-button h4{
+  font-size: 1vw;
+}
+
 .admin-bookings-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
   gap: 20px;
   padding: 20px;
 }
@@ -1079,6 +1087,76 @@ th {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
     padding: 20px;
+  }
+
+  .admin-bookings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 10px;
+    padding: 20px;
+  }
+
+  .admin-bookings-grid h4{
+    font-size: 1rem;
+  }
+
+
+
+
+  .infoMainContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 50px;
+    align-items: center;
+    margin-top: 30px;
+  
+    margin-left: auto;
+    margin-right: auto;
+  
+  }
+
+  .hotelDetailsContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 55px;
+    height: 30vh;
+  
+    padding: 20px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  
+  }
+
+  .hotelDetailsContainer h3,h2{
+    font-size: 1rem;
+  }
+
+  .mapSide {
+    width: 100%;
+    height: 30vh;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: center;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    padding: 10px;
+  }
+
+  .formButtons {
+    background-color: #61dafb;
+    border: none;
+    width: 100%;
+    height: 40px;
+    color: #fff;
+    border-radius: 10px;
+  }
+
+  .roomInfo {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100px;
   }
 
 }

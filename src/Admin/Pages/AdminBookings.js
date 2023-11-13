@@ -64,7 +64,7 @@ function AdminBooking(props) {
                           <h3 className="price">R{data.roomdata.price}</h3>
                         </div>
                         <div className="bed-occupants-button">
-                          <h4 ><FaUserCircle style={{ height: '30px', width: '30px', color: "#61dafb", marginRight: "20px" }} />User:<span style={{ color: "#61dafb", fontSize: "1.2rem" }}> {data.userData}</span></h4>
+                          <h4 ><FaUserCircle style={{ height: '30px', width: '30px', color: "#61dafb", marginRight: "20px" }} /><span style={{ color: "#61dafb", fontSize: "1rem" }}> {data.userData}</span></h4>
                           <div className="roomInfo">
                             <h4>
                               <FaBed style={{ height: '30px', width: '30px', color: "#61dafb", marginRight: "20px" }} />
@@ -76,8 +76,8 @@ function AdminBooking(props) {
                               {data.roomdata.occupants}
                             </h4>
                           </div>
-                          <h4><CalendarMonth style={{ height: '30px', width: '30px', color: "#61dafb", marginRight: "20px" }} />Check In: <span style={{ color: "green", fontSize: "1.2rem" }}>{data.dates.checkin}</span></h4>
-                          <h4 ><CalendarMonth style={{ height: '30px', width: '30px', color: "#61dafb", marginRight: "20px" }} />Check Out: <span style={{ color: "red", fontSize: "1.2rem" }}>{data.dates.checkout}</span></h4>
+                          <h4><CalendarMonth style={{ height: '30px', width: '30px', color: "#61dafb", marginRight: "20px" }} />Check In: <span style={{ color: "green", fontSize: "1rem" }}>{data.dates.checkin}</span></h4>
+                          <h4 ><CalendarMonth style={{ height: '30px', width: '30px', color: "#61dafb", marginRight: "20px" }} />Check Out: <span style={{ color: "red", fontSize: "1rem" }}>{data.dates.checkout}</span></h4>
                         </div>
                       </div>
                     </div>

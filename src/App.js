@@ -76,17 +76,12 @@ function App() {
       <Routes>
       {userRole === 'client' && <Route path="/" element={<ClientDashboard setRoomId={setRoomId} />} />}
       {userRole === 'admin' && <Route path="/" element={<AdminDash setRoomId={setRoomId} />} />}
-      {userRole === 'admin' && <Route path="/About" element={<About setRoomId={setRoomId} />} />}
-      {userRole === 'admin' && <Route path="/Contact" element={<Contact setRoomId={setRoomId} />} />}
-      {/* {userRole === 'client' && <Route path="/About" element={<About setRoomId={setRoomId} />} />}
-      {userRole === 'client' && <Route path="/Contact" element={<Contact setRoomId={setRoomId} />} />}     */}
+        {!userRole && <Route path="/" element={<Home setIsAuthenticated={setIsAuthenticated} />} />}
         {!userRole && <Route path="/About" element={<About setIsAuthenticated={setIsAuthenticated} />} />}
         {!userRole && <Route path="/Contact" element={<Contact setIsAuthenticated={setIsAuthenticated} />} />}
 
-   
- 
-        {/* <Route path="/About" element={<About />} />
-        <Route path="/Contact" element={<Contact />} /> */}
+        <Route path="/About" element={<About />} />
+        <Route path="/Contact" element={<Contact />} />
         <Route path="/AdminDashboard" element={isAuthenticated ? <AdminDash setIsAuthenticated={setIsAuthenticated} /> : <Navigate to="/" />}></Route>
         <Route path="/ClientDashboard" element={isAuthenticated ? <ClientDashboard setIsAuthenticated={setIsAuthenticated} /> : <Navigate to="/" />}></Route>
         <Route path="/ClientRoom" element={isAuthenticated ? <ClientRoom roomId={roomId} setIsAuthenticated={setIsAuthenticated} /> : <Navigate to="/" />}></Route>

@@ -79,8 +79,8 @@ function SideNavBar({ setShowForm }) {
         </li>
         <li class="nav-link px-0 align-middle" style={{ marginTop: "450px" }}>
 
-          <LoginOutlined style={{ height: '30px', width: '30px', color: "#61dafb", }} />
-          <span class="ms-1 d-none d-sm-inline" onClick={logOut}>
+          <LoginOutlined style={{ height: '30px', width: '30px', color: "#61dafb", }}  onClick={logOut}/>
+          <span class="ms-1 d-none d-sm-inline">
             Logout
           </span>{" "}
 
