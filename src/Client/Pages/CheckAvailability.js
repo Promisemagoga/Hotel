@@ -18,106 +18,106 @@ function CheckAvailability(props) {
     const [booking, setBooking] = useState([]);
 
 
-    // const checkAvailabilityBtn = async () => {
-    //     const bookingRef = collection(db, "booking");
-    //     const q = query(bookingRef);
-    //     const querySnapshot = await getDocs(q);
-
-    //     var arrAyToStore = []
-
-    //     querySnapshot.forEach((doc) => {
-    //         // console.log(doc.data().roomdata.type);
-    //         if (doc.data().roomdata.type === docData.type) {
-    //             arrAyToStore.push({ id: doc.id, ...doc.data() });
-    //         }
-    //     });
-    //     console.log(arrAyToStore.length);
-    //     if (arrAyToStore.length >= 0) {
-    //         alert("Room is not available on the selected date.");
-    //     } else {
-    //          alert("Room is available for booking");
-             
-    //         navigate("/CheckOut", { state: { dates } })
-    //              // const matchingDates = [];
-    //         // console.log(matchingDates);
-    //         // // arrAyToStore.forEach((doc) => {
-    //         // //   matchingDates.push(doc.data().dates.checkin);
-    //         // // });
-    //         // console.log(matchingDates);
-    //         // setBooking(matchingDates);
-         
-    //     }
-
-    //     // console.log(querySnapshot);
-
-    //     // if (querySnapshot.empty) {
-    //     //   alert("Room is available for booking");
-    //     //   navigate("/CheckOut",  { state: { dates } })
-
-    //     // } else {
-    //     //   const matchingDates = [];
-    //     //   console.log(matchingDates);
-    //     //   querySnapshot.forEach((doc) => {
-    //     //     matchingDates.push(doc.data().dates.checkin);
-    //     //   });
-    //     //   console.log(matchingDates);
-    //     //   setBooking(matchingDates);
-    //     //   alert("Room is not available on the selected date.");
-    //     // }
-    // };
-
     const checkAvailabilityBtn = async () => {
         const bookingRef = collection(db, "booking");
-        const q = query(bookingRef, where("dates.checkin", ">=", dates.checkin || "dates.checkout", "<=", dates.checkout));
+        const q = query(bookingRef);
         const querySnapshot = await getDocs(q);
-    
-        if (querySnapshot.empty) {
-          alert("Room is available for booking");
-          navigate("/CheckOut",  { state: { dates } })
+
+        var arrAyToStore = []
+
+        querySnapshot.forEach((doc) => {
+            if (doc.data().roomdata.type === docData.type) {
+                arrAyToStore.push({ id: doc.id, ...doc.data() });
+            }
+        });
+
+        if (arrAyToStore.length > 0) {
+
+            let clash = false;
+            arrAyToStore.forEach(doc => {
+      
+                const dbCheckIn = new Date(doc.dates.checkin);
+                const dbCheckOut = new Date(doc.dates.checkout);
+                const userCheckIn = new Date(dates.checkin);
+                const userCheckOut = new Date(dates.checkout);
+
+                if (userCheckIn <= dbCheckOut || dbCheckIn >= userCheckOut) {
+                    clash = true;
+                } 
+             
+            });
+
+            if (clash === true) {
+               alert("Room is not available on the selected date.");
+                
+            } else {
+                console.log("available");
+                alert("Room is available for booking");
+            navigate("/CheckOut", { state: { dates } })
+            }
+
         } else {
-          const matchingDates = [];
-          querySnapshot.forEach((doc) => {
-            matchingDates.push(doc.data().dates.checkin);
-          });
-          setBooking(matchingDates);
-          alert("Room is not available on the selected date.");
+            alert("Room is available for booking");
+
+            navigate("/CheckOut", { state: { dates } })
+         
+
         }
-      };
+
+    };
+
+    // const checkAvailabilityBtn = async () => {
+    //     const bookingRef = collection(db, "booking");
+    //     const q = query(bookingRef, where("dates.checkin", ">=", dates.checkin || "dates.checkout", "<=", dates.checkout));
+    //     const querySnapshot = await getDocs(q);
+
+    //     if (querySnapshot.empty) {
+    //       alert("Room is available for booking");
+    //       navigate("/CheckOut",  { state: { dates } })
+    //     } else {
+    //       const matchingDates = [];
+    //       querySnapshot.forEach((doc) => {
+    //         matchingDates.push(doc.data().dates.checkin);
+    //       });
+    //       setBooking(matchingDates);
+    //       alert("Room is not available on the selected date.");
+    //     }
+    //   };
 
     // const checkAvailabilityBtn = async () => {
     //     const bookingRef = collection(db, "booking");
     //     const q = query(bookingRef);
     //     const querySnapshot = await getDocs(q);
-      
+
     //     var arrAyToStore = [];
-      
+
     //     querySnapshot.forEach((doc) => {
     //       if (doc.data().roomdata.type === docData.type) {
     //         arrAyToStore.push({ id: doc.id, ...doc.data() });
     //       }
     //     });
-      
+
     //     console.log(arrAyToStore.length);
     //      const matchingDates = [];
     //     if (arrAyToStore.length > 0) {
     //       alert("Room is not available on the selected date.");
     //     } else {
-       
-      
+
+
     //       arrAyToStore.forEach((doc) => {
     //         matchingDates.push(doc.data().dates.checkin);
     //       });
-      
+
     //       setBooking(matchingDates);
-      
-    
-      
+
+
+
     //       navigate("/CheckOut", { state: { dates } });
-      
+
     //       alert("Room is available for booking");
     //     }
     //   };
-      
+
     console.log(booking);
 
 
@@ -158,29 +158,29 @@ function CheckAvailability(props) {
                     <div className="availabilityForm">
                         <div className="bookingForm">
                             <h1>Check Availability Form</h1>
-                            <div style={{width: "100%"}}>
-                            <label htmlFor="">
-                                Check-in
+                            <div style={{ width: "100%" }}>
+                                <label htmlFor="">
+                                    Check-in
+                                    <br />
+                                    <input
+                                        type="date"
+                                        onChange={(event) =>
+                                            setDates({ ...dates, checkin: event.target.value })
+                                        }
+                                    />
+                                </label>
                                 <br />
-                                <input
-                                    type="date"
-                                    onChange={(event) =>
-                                        setDates({ ...dates, checkin: event.target.value })
-                                    }
-                                />
-                            </label>
-                            <br/>
-                            <br/>
-                            <label htmlFor="">
-                                Check-out
                                 <br />
-                                <input
-                                    type="date"
-                                    onChange={(event) =>
-                                        setDates({ ...dates, checkout: event.target.value })
-                                    }
-                                />
-                            </label>
+                                <label htmlFor="">
+                                    Check-out
+                                    <br />
+                                    <input
+                                        type="date"
+                                        onChange={(event) =>
+                                            setDates({ ...dates, checkout: event.target.value })
+                                        }
+                                    />
+                                </label>
                             </div>
                             <button onClick={checkAvailabilityBtn} className="checkAvailabilityBtn">Check Availability</button>
                         </div>
@@ -188,8 +188,8 @@ function CheckAvailability(props) {
                             <img src={docData.mainImageUrl} className="checkMainImg" />
                             <h1>{docData.type}</h1>
                             <div className="roomDetails ">
-                                <h2><CalendarMonth style={{ height: '38px', width: '38px', color: "#61dafb", marginRight: "20px" }} />Check In: <span style={{color:"green", fontSize: "1.2rem"}}>{dates.checkin}</span></h2>
-                                <h2 ><CalendarMonth style={{ height: '38px', width: '38px', color: "#61dafb", marginRight: "20px" }} />Check Out: <span style={{color:"red", fontSize: "1.2rem"}}>{dates.checkout}</span></h2>
+                                <h2><CalendarMonth style={{ height: '38px', width: '38px', color: "#61dafb", marginRight: "20px" }} />Check In: <span style={{ color: "green", fontSize: "1.2rem" }}>{dates.checkin}</span></h2>
+                                <h2 ><CalendarMonth style={{ height: '38px', width: '38px', color: "#61dafb", marginRight: "20px" }} />Check Out: <span style={{ color: "red", fontSize: "1.2rem" }}>{dates.checkout}</span></h2>
                                 <h2><MonetizationOn style={{ height: '38px', width: '38px', color: "#61dafb", marginRight: "20px" }} />R{docData.price}</h2>
                             </div>
                         </div>
