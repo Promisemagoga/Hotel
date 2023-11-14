@@ -12,15 +12,9 @@ function Home() {
           <div className="headerContent">
             <h1>Home away from home</h1>
             <hr
-              style={{
-                width: "50%",
-                height: "10px",
-                marginLeft: "auto",
-                marginRight: "auto",
-                backgroundColor: "#56B2BB",
-              }}
+             className="horizontalLine"
             />
-            <p>Luxurious Rooms Starting from R850 pm</p>
+            <p>Luxurious Rooms Starting from R1500 per night</p>
             <button>Contact Us</button>
           </div>
         </div>

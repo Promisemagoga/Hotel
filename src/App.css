@@ -176,7 +176,7 @@
 
 }
 
-.hotelDetailsContainer h3{
+.hotelDetailsContainer h3 {
   font-size: 2rem;
 }
 
@@ -319,6 +319,14 @@ p {
   text-align: center;
 }
 
+.horizontalLine {
+  width: 50%;
+  padding-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #56B2BB
+}
+
 .btn-outline-success {
   margin-right: 10px;
 }
@@ -337,7 +345,7 @@ p {
   padding: 20px;
 }
 
-.bed-occupants-button h4{
+.bed-occupants-button h4 {
   font-size: 1vw;
 }
 
@@ -397,7 +405,7 @@ p {
 
 .headerContent p {
   color: #fff;
-  font-size: 1.5vw;
+  font-size: 1.3vw;
   font-weight: lighter;
 }
 
@@ -903,7 +911,7 @@ th {
 
   .headerContent button {
     background-color: #61dafb;
-    width: 80%;
+    width: 50%;
     height: 30px;
     color: #fff;
     border: none;
@@ -1037,16 +1045,16 @@ th {
 
   }
 
-  
-.headerContent h1 {
-  color: #fff;
-  font-size: 6vw;
-  font-weight: bold;
-}
+
+  .headerContent h1 {
+    color: #fff;
+    font-size: 6vw;
+    font-weight: bold;
+  }
 
   .headerContent p {
 
-    font-size: 4vw;
+    font-size: 3vw;
 
   }
 
@@ -1088,7 +1096,7 @@ th {
 
   }
 
-  
+
   .grid-cont {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -1103,7 +1111,7 @@ th {
     padding: 20px;
   }
 
-  .admin-bookings-grid h4{
+  .admin-bookings-grid h4 {
     font-size: 1rem;
   }
 
@@ -1117,10 +1125,10 @@ th {
     row-gap: 50px;
     align-items: center;
     margin-top: 30px;
-  
+
     margin-left: auto;
     margin-right: auto;
-  
+
   }
 
   .hotelDetailsContainer {
@@ -1129,13 +1137,14 @@ th {
     flex-direction: column;
     row-gap: 55px;
     height: 30vh;
-  
+
     padding: 20px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-  
+
   }
 
-  .hotelDetailsContainer h3,h2{
+  .hotelDetailsContainer h3,
+  h2 {
     font-size: 1rem;
   }
 
@@ -1166,6 +1175,14 @@ th {
     border-radius: 10px;
     border-color: #46464d;
     text-indent: 10px;
+  }
+
+  .horizontalLine {
+    width: 70%;
+    padding-top: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #56B2BB
   }
 
 }
