@@ -52,15 +52,27 @@ function CheckAvailability(props) {
                alert("Room is not available on the selected date.");
 
             } else {
-                console.log("available");
-                alert("Room is available for booking");
-            navigate("/CheckOut", { state: { dates } })
+                const currentDate = new Date();
+                const userCheckIn = new Date(dates.checkin);
+                if (userCheckIn < currentDate) {
+                  alert("Please select a future check-in date.");
+                } else {
+                  console.log("available");
+                  alert("Room is available for booking");
+                  navigate("/CheckOut", { state: { dates, totalPrice } });
+                }
             }
 
         } else {
-            alert("Room is available for booking");
-
-            navigate("/CheckOut", { state: { dates } })
+            const currentDate = new Date(); // Get the current date
+            const userCheckIn = new Date(dates.checkin);
+            if (userCheckIn < currentDate) {
+              alert("Please select a future check-in date.");
+            } else {
+              console.log("available");
+              alert("Room is available for booking");
+              navigate("/CheckOut", { state: { dates, totalPrice } });
+            }
 
 
         }

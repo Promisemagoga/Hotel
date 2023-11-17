@@ -23,6 +23,7 @@ function CheckOut(props) {
 
     const bookRoom = async () => {
         const dates = location.state.dates
+        const totalPrice = location.state.totalPrice
         try {
             const roomRef = doc(db, "rooms", props.roomId);
             const docSnap = await getDoc(roomRef);
@@ -139,7 +140,7 @@ function CheckOut(props) {
                             <div className="roomDetails ">
                                 <h2><CalendarMonth style={{ height: '38px', width: '38px', color: "#61dafb", marginRight: "20px" }} />Check In: <span style={{ color: "green", fontSize: "1.2rem" }}>{location.state.dates.checkin}</span></h2>
                                 <h2 ><CalendarMonth style={{ height: '38px', width: '38px', color: "#61dafb", marginRight: "20px" }} />Check Out: <span style={{ color: "red", fontSize: "1.2rem" }}>{location.state.dates.checkout}</span></h2>
-                                <h2><MonetizationOn style={{ height: '38px', width: '38px', color: "#61dafb", marginRight: "20px" }} />R{docData.price}</h2>
+                                <h2><MonetizationOn style={{ height: '38px', width: '38px', color: "#61dafb", marginRight: "20px" }} />R{location.state.totalPrice}</h2>
                             </div>
                         </div>
                     </div>

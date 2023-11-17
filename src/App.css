@@ -120,7 +120,7 @@
   margin-top: 10px;
   display: flex;
   flex-direction: column;
-  row-gap: 36px;
+  row-gap: 53px;
 }
 
 .roomMainImg {
@@ -1036,7 +1036,7 @@ th {
     margin-top: 10px;
     display: flex;
     flex-direction: column;
-    row-gap: 36px;
+    row-gap: 30px;
   }
 
   .icons {
