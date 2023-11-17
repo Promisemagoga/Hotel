@@ -14,7 +14,7 @@ function Home() {
             <hr
              className="horizontalLine"
             />
-            <p>Luxurious Rooms Starting from R1500 per night</p>
+            <p>Luxurious Rooms Starting from R350 per night</p>
             <button>Contact Us</button>
           </div>
         </div>

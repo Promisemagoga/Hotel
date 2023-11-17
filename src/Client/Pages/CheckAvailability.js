@@ -16,6 +16,7 @@ function CheckAvailability(props) {
     const navigate = useNavigate()
     const [dates, setDates] = useState({ checkin: "", checkout: "" });
     const [booking, setBooking] = useState([]);
+    const [totalPrice, setTotalPrice] = useState(0);
 
 
     const checkAvailabilityBtn = async () => {
@@ -35,7 +36,7 @@ function CheckAvailability(props) {
 
             let clash = false;
             arrAyToStore.forEach(doc => {
-      
+
                 const dbCheckIn = new Date(doc.dates.checkin);
                 const dbCheckOut = new Date(doc.dates.checkout);
                 const userCheckIn = new Date(dates.checkin);
@@ -44,12 +45,12 @@ function CheckAvailability(props) {
                 if (userCheckIn <= dbCheckOut || dbCheckIn >= userCheckOut) {
                     clash = true;
                 } 
-             
+
             });
 
             if (clash === true) {
                alert("Room is not available on the selected date.");
-                
+
             } else {
                 console.log("available");
                 alert("Room is available for booking");
@@ -60,65 +61,29 @@ function CheckAvailability(props) {
             alert("Room is available for booking");
 
             navigate("/CheckOut", { state: { dates } })
-         
+
 
         }
+    
+  
 
     };
 
-    // const checkAvailabilityBtn = async () => {
-    //     const bookingRef = collection(db, "booking");
-    //     const q = query(bookingRef, where("dates.checkin", ">=", dates.checkin || "dates.checkout", "<=", dates.checkout));
-    //     const querySnapshot = await getDocs(q);
-
-    //     if (querySnapshot.empty) {
-    //       alert("Room is available for booking");
-    //       navigate("/CheckOut",  { state: { dates } })
-    //     } else {
-    //       const matchingDates = [];
-    //       querySnapshot.forEach((doc) => {
-    //         matchingDates.push(doc.data().dates.checkin);
-    //       });
-    //       setBooking(matchingDates);
-    //       alert("Room is not available on the selected date.");
-    //     }
-    //   };
-
-    // const checkAvailabilityBtn = async () => {
-    //     const bookingRef = collection(db, "booking");
-    //     const q = query(bookingRef);
-    //     const querySnapshot = await getDocs(q);
-
-    //     var arrAyToStore = [];
-
-    //     querySnapshot.forEach((doc) => {
-    //       if (doc.data().roomdata.type === docData.type) {
-    //         arrAyToStore.push({ id: doc.id, ...doc.data() });
-    //       }
-    //     });
-
-    //     console.log(arrAyToStore.length);
-    //      const matchingDates = [];
-    //     if (arrAyToStore.length > 0) {
-    //       alert("Room is not available on the selected date.");
-    //     } else {
+    useEffect(() => {
 
 
-    //       arrAyToStore.forEach((doc) => {
-    //         matchingDates.push(doc.data().dates.checkin);
-    //       });
+        if (dates.checkin !== "" && dates.checkout !== "") {
+            const roomPrice = docData.price;
+            const checkInDate = new Date(dates.checkin);
+            const checkOutDate = new Date(dates.checkout);
+            const numberOfDays = Math.ceil((checkOutDate - checkInDate) / (1000 * 60 * 60 * 24));
+            const calculatedPrice = numberOfDays * roomPrice;
+            setTotalPrice(calculatedPrice);
+            console.log(calculatedPrice);
+        }
+    }, [dates])
 
-    //       setBooking(matchingDates);
 
-
-
-    //       navigate("/CheckOut", { state: { dates } });
-
-    //       alert("Room is available for booking");
-    //     }
-    //   };
-
-    console.log(booking);
 
 
 
@@ -190,7 +155,7 @@ function CheckAvailability(props) {
                             <div className="roomDetails ">
                                 <h2><CalendarMonth style={{ height: '38px', width: '38px', color: "#61dafb", marginRight: "20px" }} />Check In: <span style={{ color: "green", fontSize: "1.2rem" }}>{dates.checkin}</span></h2>
                                 <h2 ><CalendarMonth style={{ height: '38px', width: '38px', color: "#61dafb", marginRight: "20px" }} />Check Out: <span style={{ color: "red", fontSize: "1.2rem" }}>{dates.checkout}</span></h2>
-                                <h2><MonetizationOn style={{ height: '38px', width: '38px', color: "#61dafb", marginRight: "20px" }} />R{docData.price}</h2>
+                                <h2><MonetizationOn style={{ height: '38px', width: '38px', color: "#61dafb", marginRight: "20px" }} />R{totalPrice}</h2>
                             </div>
                         </div>
                     </div>
